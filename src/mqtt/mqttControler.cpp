@@ -1,7 +1,9 @@
-#include <PubSubClient.h>
-
 #include <WiFi.h>
 #include <PubSubClient.h>
+
+#include "pins/pinsControler.hpp"
+
+using std::runtime_error;
 
 // *****************************************************
 // MQTT Setup
@@ -75,14 +77,22 @@ void reconnect()
 
 void mqttSetup()
 {
-  // Init MQTT
-  Serial.printf("MQTT Broker: %s\n", mqtt_server);
-  Serial.printf("MQTT Port: %d\n", mqtt_port);
+  printf("\n---> MQTT Setup startet\n");
+  try
+  {
+    // Init MQTT
+    Serial.printf("MQTT Broker: %s\n", mqtt_server);
+    Serial.printf("MQTT Port: %d\n", mqtt_port);
 
-  client.setServer(mqtt_server, mqtt_port);
-  client.setCallback(callback);
+    client.setServer(mqtt_server, mqtt_port);
+    client.setCallback(callback);
+  }
+  catch (const runtime_error &e)
+  {
+    printf("Exception aufgetreten!\n%s", e.what());
+  }
 
-  Serial.println("MQTT done");
+  printf("\n<--- MQTT Setup startet\n");
 }
 
 void mqttLoop()
@@ -101,7 +111,7 @@ void mqttLoop()
     lastMsg = now;
 
     // Temperature in Celsius
-    temperature = random(20, 30);
+    temperature = getTemperatur();
 
     // Convert the value to a char array
     char tempString[8];

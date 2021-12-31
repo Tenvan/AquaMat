@@ -7,10 +7,8 @@
 #include "ota/otaControler.hpp"
 #include "mqtt/mqttControler.hpp"
 #include "wifi/wifiControler.hpp"
-#include "pins/pins.hpp"
+#include "pins/pinsControler.hpp"
 
-using std::cout;
-using std::endl;
 using std::runtime_error;
 
 void setup()
@@ -33,7 +31,8 @@ void setup()
 
   printf("\nAquaMAt Version %s wird geladen.\n", VERSION);
 
-  screenSetup();
+  // Init Screen Hardware
+  screenPreSetup();
 
   // Init WIFI
   setup_wifi();
@@ -48,6 +47,9 @@ void setup()
   // Init Pins
   pinsSetup();
 
+  // Init Screen Ticker
+  screenPostSetup();
+
   printf("Setup komplett.");
 }
 
@@ -57,7 +59,8 @@ void loop()
 
   mqttLoop();
 
-  screenLoop();
+  // screenLoop();
+  asciiLoop();
 
   delay(1);
 }

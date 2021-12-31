@@ -1,5 +1,8 @@
-#include <AsyncElegantOTA.h>
 #include <ArduinoOTA.h>
+#include <AsyncElegantOTA.h>
+
+using std::runtime_error;
+
 #include "main.hpp"
 #include "otaControler.hpp"
 
@@ -23,22 +26,27 @@ void setup_elegant_ota()
 
 void setup_basic_ota()
 {
-  // Port defaults to 3232
-  ArduinoOTA.setPort(3232);
+  printf("\n---> Basic OTA Setup startet\n");
+  
+  try
+  {
 
-  // Hostname defaults to esp3232-[MAC]
-  ArduinoOTA.setHostname("AquaMat");
+    // Port defaults to 3232
+    ArduinoOTA.setPort(3232);
 
-  // No authentication by default
-  // ArduinoOTA.setPassword("admin");
+    // Hostname defaults to esp3232-[MAC]
+    ArduinoOTA.setHostname("AquaMat");
 
-  // Password can be set with it's md5 value as well
-  // MD5(admin) = 21232f297a57a5a743894a0e4a801fc3
-  // ArduinoOTA.setPasswordHash("21232f297a57a5a743894a0e4a801fc3");
+    // No authentication by default
+    // ArduinoOTA.setPassword("admin");
 
-  ArduinoOTA
-      .onStart([]()
-               {
+    // Password can be set with it's md5 value as well
+    // MD5(admin) = 21232f297a57a5a743894a0e4a801fc3
+    // ArduinoOTA.setPasswordHash("21232f297a57a5a743894a0e4a801fc3");
+
+    ArduinoOTA
+        .onStart([]()
+                 {
       String type;
       if (ArduinoOTA.getCommand() == U_FLASH)
         type = "sketch";
@@ -47,12 +55,12 @@ void setup_basic_ota()
 
       // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
       Serial.println("Start updating " + type); })
-      .onEnd([]()
-             { Serial.println("\nEnd"); })
-      .onProgress([](unsigned int progress, unsigned int total)
-                  { Serial.printf("Progress: %u%%\r", (progress / (total / 100))); })
-      .onError([](ota_error_t error)
-               {
+        .onEnd([]()
+               { Serial.println("\nEnd"); })
+        .onProgress([](unsigned int progress, unsigned int total)
+                    { Serial.printf("Progress: %u%%\r", (progress / (total / 100))); })
+        .onError([](ota_error_t error)
+                 {
       Serial.printf("Error[%u]: ", error);
       if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
       else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
@@ -60,7 +68,12 @@ void setup_basic_ota()
       else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
       else if (error == OTA_END_ERROR) Serial.println("End Failed"); });
 
-  ArduinoOTA.begin();
+    ArduinoOTA.begin();
+  }
+  catch (const runtime_error &e)
+  {
+    printf("Exception aufgetreten!\n%s", e.what());
+  }
 
-  Serial.println("Basic OTA Setup fertig");
+  printf("\n<--- Basic OTA Setup fertig\n");
 }

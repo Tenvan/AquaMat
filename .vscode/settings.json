@@ -2,8 +2,19 @@
     "cSpell.words": [
         "Blau",
         "Blynk",
+        "dtostrf",
+        "emqx",
         "Gelb",
+        "GPIOs",
         "Grün",
-        "ssid"
+        "mqtt",
+        "MQTT",
+        "mqttserver",
+        "oled",
+        "OLED",
+        "ssid",
+        "SWITCHCAPVCC",
+        "wifi",
+        "WIFI"
     ]
 }

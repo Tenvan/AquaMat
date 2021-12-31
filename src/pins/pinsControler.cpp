@@ -1,9 +1,36 @@
 #include <Arduino.h>
 #include "main.hpp"
-#include "pins.hpp"
+#include "pinsControler.hpp"
+
+/**
+ * @brief Gibt die Anzahl der konfigurierten Pumpen zurück
+ *
+ * @return int
+ */
+int getPumpen()
+{
+    return 3;
+}
+
+long lastTemperaturRefresh;
+double currentTemperatur;
+
+double getTemperatur()
+{
+    auto now = millis();
+
+    if (now - lastTemperaturRefresh > 5000)
+    {
+        lastTemperaturRefresh = now;
+        currentTemperatur = random(15, 34);
+    }
+    return currentTemperatur;
+}
 
 void pinsSetup()
 {
+    printf("\n---> Pins Setup startet\n");
+
     pinMode(LED_BUILTIN, OUTPUT);
 
     pinMode(PIN_PUMP1, OUTPUT);
@@ -16,7 +43,7 @@ void pinsSetup()
 
     Serial.println("Pin done");
 
-    Serial.println("Pins Setup fertig.");
+    printf("\n<--- Pins Setup fertig\n");
 }
 
 long lastPin = 0;
@@ -25,13 +52,13 @@ void pinsLoop()
 {
     long now = millis();
 
-    if (now - lastPin > 500)
+    if (now - lastPin > 100)
     {
         auto button1 = digitalRead(PIN_BUTTON1);
         auto button2 = digitalRead(PIN_BUTTON2);
         auto button3 = digitalRead(PIN_BUTTON3);
 
-        printf("Buttons -> Gelb: %d / Blau: %d / Rot %d\n", button1, button2, button3);
+        // printf("Buttons -> Gelb: %d / Blau: %d / Rot %d\n", button1, button2, button3);
 
         digitalWrite(PIN_PUMP1, 1 - button1);
         digitalWrite(PIN_PUMP2, 1 - button2);
