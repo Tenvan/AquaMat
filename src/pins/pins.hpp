@@ -1,0 +1,2 @@
+void pinsSetup();
+void pinsLoop();
