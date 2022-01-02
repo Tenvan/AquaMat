@@ -11,3 +11,4 @@
 
 void setup_elegant_ota();
 void setup_basic_ota();
+void otaLoop();

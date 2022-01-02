@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include <WiFi.h>
 #include <PubSubClient.h>
 
@@ -16,7 +18,6 @@ char msg[50];
 int value = 0;
 
 float temperature = 0;
-float humidity = 0;
 
 // Add your MQTT Broker IP address, example:
 // const char* mqtt_server = "192.168.1.144";

@@ -1,6 +1,5 @@
 #include <Arduino.h>
-#include <analogWrite.h>
-#include <iostream>
+#include <stdexcept>
 
 #include "main.hpp"
 #include "ssd1306/ssd1306Controler.hpp"
@@ -55,6 +54,8 @@ void setup()
 
 void loop()
 {
+  otaLoop();
+
   pinsLoop();
 
   mqttLoop();
@@ -63,23 +64,4 @@ void loop()
   asciiLoop();
 
   delay(1);
-}
-
-void setPump(int pin, bool status)
-{
-  if (status)
-  {
-    digitalWrite(pin, HIGH);
-    // for (int i = 0; i < 1000; i = i + 10)
-    // {
-    //   analogWrite(pin, i, 1000);
-    //   Serial.printf("Pin: %d Power: %d\n", pin, i);
-    //   delay(50);
-    // }
-  }
-  else
-  {
-    digitalWrite(pin, LOW);
-    // analogWrite(pin, 0);
-  }
 }

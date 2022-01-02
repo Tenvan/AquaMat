@@ -1,8 +1,5 @@
+#include <stdexcept>
 
-#include <SPI.h>
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 #include "SSD1306Ascii.h"
 #include "SSD1306AsciiWire.h"
 
@@ -18,17 +15,10 @@ using std::runtime_error;
 const DevType displayDevice = Adafruit128x32;
 
 // const uint8_t* tickerFont = Adafruit5x7;
-// const uint8_t* tickerFont = Arial_bold_14;
-// const uint8_t* tickerFont = Callibri14;
-const uint8_t* tickerFont = fixed_bold10x15;
+const uint8_t *tickerFont = fixed_bold10x15;
 
 #define SCREEN_WIDTH displayDevice.lcdWidth   // OLED display width, in pixels
 #define SCREEN_HEIGHT displayDevice.lcdHeight // OLED display height, in pixels
-
-#define LINE1 0 * SCREEN_HEIGHT / 4 // Zeile 1 bei kleinster Auflösung
-#define LINE2 1 * SCREEN_HEIGHT / 4 // Zeile 2 bei kleinster Auflösung
-#define LINE3 2 * SCREEN_HEIGHT / 4 // Zeile 3 bei kleinster Auflösung
-#define LINE4 3 * SCREEN_HEIGHT / 4 // Zeile 4 bei kleinster Auflösung
 
 #define POS1 0 * SCREEN_WIDTH / 4 // Spalte erstes Viertel bei kleinster Auflösung
 #define POS2 1 * SCREEN_WIDTH / 4 // Spalte zweites Viertel bei kleinster Auflösung
@@ -53,48 +43,36 @@ uint32_t tickTime = 0;
 
 // Ticker state. Maintains text pointer queue and current ticker state.
 TickerState stateTickerTop;
-int lineTop = 0;
 TickerState stateTickerBottom;
-int lineBottom = 0;
-
-#define TICKER1_LINES 4
-#define TICKER2_LINES 2
 
 String textTop;
 String textBottom;
 
-void asciiLoop()
-{
-  if (tickTime <= millis())
-  {
+void asciiLoop() {
+  if (tickTime <= millis()) {
     tickTime = millis() + 30;
 
     // Should check for error. rtn < 0 indicates error.
     auto rtnTop = tickerTop.tickerTick(&stateTickerTop);
     auto rtnBottom = tickerBottom.tickerTick(&stateTickerBottom);
 
-    if (rtnTop <= RTN_CHECK)
-    {
-      if (!tickerTop.tickerText(&stateTickerTop, textTop))
-      {
-        printf("Fehler im Ticker Top aufgetreten!");
+    if (rtnTop <= RTN_CHECK) {
+      if (!tickerTop.tickerText(&stateTickerTop, textTop)) {
+        printf("Fehler im Ticker Top aufgetreten!\n");
       }
     }
 
-    if (rtnBottom <= RTN_CHECK)
-    {
+    if (rtnBottom <= RTN_CHECK) {
       textBottom = "Pumpen: " + String(getPumpen()) + " * Temperatur: " + String(getTemperatur(), 1) + " Grad Celsius";
 
-      if (!tickerBottom.tickerText(&stateTickerBottom, textBottom))
-      {
-        printf("Fehler im Ticker Bottom aufgetreten!");
+      if (!tickerBottom.tickerText(&stateTickerBottom, textBottom)) {
+        printf("Fehler im Ticker Bottom aufgetreten!\n");
       }
     }
   }
 }
 
-void asciiPreSetup()
-{
+void asciiPreSetup() {
   Wire.begin();
   Wire.setClock(400000L);
 
@@ -116,7 +94,8 @@ void asciiPreSetup()
   printf("\nDisplay Diagnose:\n");
   printf("----> Display\n");
   printf("Screen Width %d Height: %d\n", SCREEN_WIDTH, SCREEN_HEIGHT);
-  printf("Display Width %d Height: %d Size: %d ColOffset: %d\n", displayDevice.lcdWidth, displayDevice.lcdHeight, displayDevice.initSize, displayDevice.colOffset);
+  printf("Display Width %d Height: %d Size: %d ColOffset: %d\n", displayDevice.lcdWidth, displayDevice.lcdHeight,
+         displayDevice.initSize, displayDevice.colOffset);
   printf("<---- Display\n");
   printf("----> Ticker Top\n");
   printf("DisplayRows %d FontRows: %d\n", tickerTop.displayRows(), tickerTop.fontRows());
@@ -126,44 +105,38 @@ void asciiPreSetup()
   printf("<---- Ticker Bottom\n");
 }
 
-void asciiPostSetup()
-{
+void asciiPostSetup() {
   /**
    * @brief Ticker Top Texte hier definieren, da diese statisch sind.
    *
    */
-  textTop = "AquaMat " + String(VERSION) + " * (c) 2022 Ralf Stich * WLAN SSID: " + String(WiFi.SSID()) + " * IP: " + String(WiFi.localIP());
+  textTop = "AquaMat " + String(VERSION) + " * (c) 2022 Ralf Stich * WLAN SSID: " + String(WiFi.SSID()) + " * IP: " +
+            String(WiFi.localIP());
   printf("Top Ticker Text: %s\n", textTop.c_str());
 
   textBottom = "Pumpen: " + String(getPumpen()) + " * Temperatur: " + String(getTemperatur());
   printf("Bottom Ticker Text: %s\n", textBottom.c_str());
 }
 
-void screenPreSetup()
-{
+void screenPreSetup() {
   printf("\n---> Screen Pre Setup startet\n");
-  try
-  {
+  try {
     asciiPreSetup();
   }
-  catch (const runtime_error &e)
-  {
-    printf("Exception aufgetreten!\n%s", e.what());
+  catch (const runtime_error &e) {
+    printf("Exception aufgetreten!\n%s\n", e.what());
   }
 
   printf("\n<--- Screen Pre Setup fertig\n");
 }
 
-void screenPostSetup()
-{
+void screenPostSetup() {
   printf("\n---> Screen Post Setup startet\n");
-  try
-  {
+  try {
     asciiPostSetup();
   }
-  catch (const runtime_error &e)
-  {
-    printf("Exception aufgetreten!\n%s", e.what());
+  catch (const runtime_error &e) {
+    printf("Exception aufgetreten!\n%s\n", e.what());
   }
 
   printf("\n<--- Screen Post Setup fertig\n");
