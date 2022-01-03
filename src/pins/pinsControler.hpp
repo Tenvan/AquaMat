@@ -1,4 +1,13 @@
+//
+// Created by ralf on 03.01.22.
+//
+
+#ifndef AQUAMAT_PINSCONTROLER_HPP
+#define AQUAMAT_PINSCONTROLER_HPP
+
 #include <Arduino.h>
+
+
 
 #define A0 GPIO_NUM_2
 #define A1 GPIO_NUM_4
@@ -29,3 +38,5 @@ void pinsLoop();
 int getPumpen();
 
 double getTemperatur();
+
+#endif //AQUAMAT_PINSCONTROLER_HPP

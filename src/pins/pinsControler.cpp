@@ -6,6 +6,7 @@ using std::runtime_error;
 #include "main.hpp"
 #include "pinsControler.hpp"
 #include "pumps/pumpControler.hpp"
+#include "ArduinoLog.h"
 
 enum Buttons {
   GELB,
@@ -37,7 +38,7 @@ double getTemperatur() {
 }
 
 void pinsSetup() {
-  printf("\n---> Pins Setup startet\n");
+  Log.traceln("---> Pins Setup startet");
 
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
@@ -55,25 +56,19 @@ void pinsSetup() {
   pinMode(PIN_BUTTON_ROT, INPUT_PULLUP);
   pinMode(PIN_BUTTON_SCHWARZ, INPUT_PULLUP);
 
-  Serial.println("Pin done");
-
-  printf("\n<--- Pins Setup fertig\n");
+  Log.traceln("<--- Pins Setup fertig");
 }
 
 String getButtonColor(Buttons button) {
   switch (button) {
     case GELB:
       return "GELB";
-      break;
     case BLAU:
       return "BLAU";
-      break;
     case ROT:
       return "ROT";
-      break;
     case SCHWARZ:
       return "SCHWARZ";
-      break;
   }
 
   return "KEINE";
@@ -83,13 +78,10 @@ int getButtonPin(Buttons button) {
   switch (button) {
     case GELB:
       return PIN_BUTTON_GELB;
-
     case BLAU:
       return PIN_BUTTON_BLAU;
-
     case ROT:
       return PIN_BUTTON_ROT;
-
     case SCHWARZ:
       return PIN_BUTTON_SCHWARZ;
   }
@@ -110,7 +102,7 @@ bool buttonPressed(Buttons button) {
     while (getButtonPressed(button)) {
       delay(10);
     }
-    printf("Button %s (%d) gedrückt\n", getButtonColor(button).c_str(), button);
+    Log.noticeln("Button %s (%d) gedrückt", getButtonColor(button).c_str(), button);
     return true;
   }
 
@@ -151,7 +143,7 @@ void pinsLoop() {
       }
     }
     catch (const runtime_error &e) {
-      printf("Exception aufgetreten!\n%s", e.what());
+      Log.noticeln("Exception aufgetreten!%s", e.what());
     }
 
     lastPin = now;

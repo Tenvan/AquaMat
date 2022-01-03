@@ -3,11 +3,15 @@
 #include <ArduinoOTA.h>
 #include "ESPAsyncWebServer.h"
 #include "AsyncElegantOTA.h"
+#include "SSD1306Ascii.h"
+#include "SSD1306AsciiWire.h"
 
 using std::runtime_error;
 
 #include "main.hpp"
 #include "otaControler.hpp"
+#include "ssd1306/ssd1306Controler.hpp"
+#include "ArduinoLog.h"
 
 #define GREETING "Hallo! Ich bin dein AquaMat mit der Version: "
 
@@ -17,18 +21,18 @@ void setup_elegant_ota() {
   delay(10);
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-      request->send(200, "text/plain", String(GREETING) + String(VERSION));
+    request->send(200, "text/plain", String(GREETING) + String(VERSION));
   });
 
   AsyncElegantOTA.begin(&server);
   server.begin();
-  Serial.println("HTTP Server gestartet");
+  Log.noticeln("HTTP Server gestartet");
 
-  Serial.println("Elegant OTA Setup fertig");
+  Log.noticeln("Elegant OTA Setup fertig");
 }
 
 void setup_basic_ota() {
-  printf("\n---> Basic OTA Setup startet\n");
+  Log.traceln("---> Basic OTA Setup startet");
 
   try {
 
@@ -47,35 +51,49 @@ void setup_basic_ota() {
 
     ArduinoOTA
         .onStart([]() {
-            String type;
-            if (ArduinoOTA.getCommand() == U_FLASH)
-              type = "sketch";
-            else // U_SPIFFS
-              type = "filesystem";
+          String type;
+          if (ArduinoOTA.getCommand() == U_FLASH)
+            type = "sketch";
+          else // U_SPIFFS
+            type = "filesystem";
 
-            // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
-            Serial.println("Start updating " + type);
+          // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+          Log.noticeln("Start updating %s", type.c_str());
+          stopTicker();
+          displayFull.clear();
+          displayFull.println("OTA Update");
         })
-        .onEnd([]() { Serial.println("\nEnd"); })
+        .onEnd([]() {
+          Log.noticeln("End");
+          displayFull.clear();
+          displayFull.println("OTA Fertig");
+          displayFull.println(":-)");
+          delay(1000);
+        })
         .onProgress([](unsigned int progress, unsigned int total) {
-            Serial.printf("Progress: %u%%\n", (progress / (total / 100)));
+          Log.noticeln("Progress: %d %%", (progress / (total / 100)));
+          displayFull.printf("==> %03u %%\n", (progress / (total / 100)));
         })
         .onError([](ota_error_t error) {
-            Serial.printf("Error[%u]: ", error);
-            if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
-            else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
-            else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
-            else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
-            else if (error == OTA_END_ERROR) Serial.println("End Failed");
+          Log.noticeln("Error[%u]: ", error);
+
+          displayFull.clear();
+          displayFull.println("OTA Fehler !");
+          displayFull.println(error);
+          if (error == OTA_AUTH_ERROR) Log.noticeln("Auth Failed");
+          else if (error == OTA_BEGIN_ERROR) Log.noticeln("Begin Failed");
+          else if (error == OTA_CONNECT_ERROR) Log.noticeln("Connect Failed");
+          else if (error == OTA_RECEIVE_ERROR) Log.noticeln("Receive Failed");
+          else if (error == OTA_END_ERROR) Log.noticeln("End Failed");
         });
 
     ArduinoOTA.begin();
   }
   catch (const runtime_error &e) {
-    printf("Exception aufgetreten!\n%s", e.what());
+    Log.noticeln("Exception aufgetreten!" CR "%s", e.what());
   }
 
-  printf("\n<--- Basic OTA Setup fertig\n");
+  Log.traceln("<--- Basic OTA Setup fertig");
 }
 
 void otaLoop() {

@@ -9,13 +9,14 @@
 #include "ssd1306Controler.hpp"
 #include "ssd1306Images.hpp"
 #include "pins/pinsControler.hpp"
+#include "ArduinoLog.h"
 
 using std::runtime_error;
 
 const DevType displayDevice = Adafruit128x32;
 
-// const uint8_t* tickerFont = Adafruit5x7;
-const uint8_t *tickerFont = fixed_bold10x15;
+// const uint8_t* systemFont = Adafruit5x7;
+const uint8_t *systemFont = fixed_bold10x15;
 
 #define SCREEN_WIDTH displayDevice.lcdWidth   // OLED display width, in pixels
 #define SCREEN_HEIGHT displayDevice.lcdHeight // OLED display height, in pixels
@@ -36,8 +37,11 @@ const uint8_t *tickerFont = fixed_bold10x15;
 // Try values of zero or one for RTN_CHECK.
 #define RTN_CHECK 1
 
-SSD1306AsciiWire tickerTop;
-SSD1306AsciiWire tickerBottom;
+SSD1306AsciiWire displayLineTop;
+SSD1306AsciiWire displayLineBottom;
+SSD1306AsciiWire displayFull;
+
+bool tickerActive = true;
 
 uint32_t tickTime = 0;
 
@@ -49,24 +53,24 @@ String textTop;
 String textBottom;
 
 void asciiLoop() {
-  if (tickTime <= millis()) {
+  if (tickerActive && tickTime <= millis()) {
     tickTime = millis() + 30;
 
     // Should check for error. rtn < 0 indicates error.
-    auto rtnTop = tickerTop.tickerTick(&stateTickerTop);
-    auto rtnBottom = tickerBottom.tickerTick(&stateTickerBottom);
+    auto rtnTop = displayLineTop.tickerTick(&stateTickerTop);
+    auto rtnBottom = displayLineBottom.tickerTick(&stateTickerBottom);
 
     if (rtnTop <= RTN_CHECK) {
-      if (!tickerTop.tickerText(&stateTickerTop, textTop)) {
-        printf("Fehler im Ticker Top aufgetreten!\n");
+      if (!displayLineTop.tickerText(&stateTickerTop, textTop)) {
+        Log.noticeln("Fehler im Ticker Top aufgetreten!");
       }
     }
 
     if (rtnBottom <= RTN_CHECK) {
       textBottom = "Pumpen: " + String(getPumpen()) + " * Temperatur: " + String(getTemperatur(), 1) + " Grad Celsius";
 
-      if (!tickerBottom.tickerText(&stateTickerBottom, textBottom)) {
-        printf("Fehler im Ticker Bottom aufgetreten!\n");
+      if (!displayLineBottom.tickerText(&stateTickerBottom, textBottom)) {
+        Log.noticeln("Fehler im Ticker Bottom aufgetreten!");
       }
     }
   }
@@ -77,32 +81,24 @@ void asciiPreSetup() {
   Wire.setClock(400000L);
 
 #if OLED_RESET >= 0
-  tickerTop.begin(&displayDevice, SCREEN_ADDRESS, OLED_RESET);
-  tickerBottom.begin(&displayDevice, SCREEN_ADDRESS, OLED_RESET);
+  displayLineTop.begin(&displayDevice, SCREEN_ADDRESS, OLED_RESET);
+  displayLineBottom.begin(&displayDevice, SCREEN_ADDRESS, OLED_RESET);
+  displayFull.begin(&displayDevice, SCREEN_ADDRESS, OLED_RESET);
 #else
-  tickerTop.begin(&displayDevice, SCREEN_ADDRESS);
-  tickerBottom.begin(&displayDevice, SCREEN_ADDRESS);
+  displayLineTop.begin(&displayDevice, SCREEN_ADDRESS);
+  displayLineBottom.begin(&displayDevice, SCREEN_ADDRESS);
+  displayFull.begin(&displayDevice, SCREEN_ADDRESS);
 #endif
 
   // Use Adafruit5x7, field at row 1, set2X, columns 0 through 128.
-  tickerTop.tickerInit(&stateTickerTop, tickerFont, 0, false, POS1, SCREEN_WIDTH);
-  tickerBottom.tickerInit(&stateTickerBottom, tickerFont, 2, false, POS1, SCREEN_WIDTH);
+  displayLineTop.tickerInit(&stateTickerTop, systemFont, 0, false, POS1, SCREEN_WIDTH);
+  displayLineBottom.tickerInit(&stateTickerBottom, systemFont, 2, false, POS1, SCREEN_WIDTH);
+  displayFull.setFont(systemFont);
 
-  tickerTop.clear();
-  tickerBottom.clear();
-
-  printf("\nDisplay Diagnose:\n");
-  printf("----> Display\n");
-  printf("Screen Width %d Height: %d\n", SCREEN_WIDTH, SCREEN_HEIGHT);
-  printf("Display Width %d Height: %d Size: %d ColOffset: %d\n", displayDevice.lcdWidth, displayDevice.lcdHeight,
-         displayDevice.initSize, displayDevice.colOffset);
-  printf("<---- Display\n");
-  printf("----> Ticker Top\n");
-  printf("DisplayRows %d FontRows: %d\n", tickerTop.displayRows(), tickerTop.fontRows());
-  printf("<---- Ticker Top\n");
-  printf("----> Ticker Bottom\n");
-  printf("DisplayRows %d FontRows: %d\n", tickerBottom.displayRows(), tickerBottom.fontRows());
-  printf("<---- Ticker Bottom\n");
+  displayLineTop.clear();
+  displayLineBottom.clear();
+  displayLineTop.println("OLED LINE 1");
+  displayLineBottom.println("OLED LINE 2");
 }
 
 void asciiPostSetup() {
@@ -111,33 +107,45 @@ void asciiPostSetup() {
    *
    */
   textTop = "AquaMat " + String(VERSION) + " * (c) 2022 Ralf Stich * WLAN SSID: " + String(WiFi.SSID()) + " * IP: " +
-            String(WiFi.localIP());
-  printf("Top Ticker Text: %s\n", textTop.c_str());
+            String(WiFi.localIP()) + " ";
+  Log.noticeln("Top Ticker Text: %s", textTop.c_str());
 
-  textBottom = "Pumpen: " + String(getPumpen()) + " * Temperatur: " + String(getTemperatur());
-  printf("Bottom Ticker Text: %s\n", textBottom.c_str());
+  textBottom = "Pumpen: " + String(getPumpen()) + " * Temperatur: " + String(getTemperatur()) + " ";
+  Log.noticeln("Bottom Ticker Text: %s", textBottom.c_str());
+}
+
+void stopTicker() {
+  tickerActive = false;
+  displayLineTop.clear();
+  displayLineBottom.clear();
+}
+
+void startTicker() {
+  displayLineTop.clear();
+  displayLineBottom.clear();
+  tickerActive = true;
 }
 
 void screenPreSetup() {
-  printf("\n---> Screen Pre Setup startet\n");
+  Log.noticeln("---> Screen Pre Setup startet");
   try {
     asciiPreSetup();
   }
   catch (const runtime_error &e) {
-    printf("Exception aufgetreten!\n%s\n", e.what());
+    Log.noticeln("Exception aufgetreten!" CR "%s", e.what());
   }
 
-  printf("\n<--- Screen Pre Setup fertig\n");
+  Log.noticeln("<--- Screen Pre Setup fertig");
 }
 
 void screenPostSetup() {
-  printf("\n---> Screen Post Setup startet\n");
+  Log.noticeln("---> Screen Post Setup startet");
   try {
     asciiPostSetup();
   }
   catch (const runtime_error &e) {
-    printf("Exception aufgetreten!\n%s\n", e.what());
+    Log.noticeln("Exception aufgetreten!" CR "%s", e.what());
   }
 
-  printf("\n<--- Screen Post Setup fertig\n");
+  Log.noticeln("<--- Screen Post Setup fertig");
 }

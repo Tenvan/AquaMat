@@ -2,33 +2,34 @@
 #include <stdexcept>
 
 #include "main.hpp"
+#include "logger.hpp"
 #include "ssd1306/ssd1306Controler.hpp"
 #include "ota/otaControler.hpp"
 #include "mqtt/mqttControler.hpp"
 #include "wifi/wifiControler.hpp"
 #include "pins/pinsControler.hpp"
+#include "ArduinoLog.h"
 
 using std::runtime_error;
 
-void setup()
-{
-  Serial.begin(115200);
+void setup() {
+  setupLogger();
 
   /* Print chip information */
   esp_chip_info_t chip_info;
   esp_chip_info(&chip_info);
-  
-  printf("This is ESP32 chip with %d CPU cores, WiFi%s%s, ",
-         chip_info.cores,
-         (chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
-         (chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
 
-  printf("silicon revision %d, ", chip_info.revision);
+  Log.info("This is ESP32 chip with %d CPU cores, WiFi%s%s, ",
+           chip_info.cores,
+           (chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
+           (chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
 
-  printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
-         (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
+  Log.info("silicon revision %d, ", chip_info.revision);
 
-  printf("\nAquaMAt Version %s wird geladen.\n", VERSION);
+  Log.infoln("%dMB %s flash", spi_flash_get_chip_size() / (1024 * 1024),
+             (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
+
+  Log.infoln("AquaMAt Version %s wird geladen.", VERSION);
 
   // Init Screen Hardware
   screenPreSetup();
@@ -49,19 +50,17 @@ void setup()
   // Init Screen Ticker
   screenPostSetup();
 
-  printf("Setup komplett.");
+  Log.noticeln("Setup komplett.");
 }
 
-void loop()
-{
+void loop() {
   otaLoop();
 
   pinsLoop();
 
   mqttLoop();
 
-  // screenLoop();
   asciiLoop();
 
-  delay(1);
+  delay(10);
 }

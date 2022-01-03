@@ -1,6 +1,8 @@
 #include <stdexcept>
 
 #include "wifiControler.hpp"
+#include "ArduinoLog.h"
+#include "ssd1306/ssd1306Controler.hpp"
 
 using std::runtime_error;
 
@@ -8,31 +10,37 @@ const char *ssid = WIFI_SSID;
 const char *pass = WIFI_PW;
 
 void setup_wifi() {
-  printf("\n---> Wifi Setup startet\n");
+  Log.traceln("---> Wifi Setup startet");
 
   try {
     // We start by connecting to a WiFi network
-    Serial.println();
-    Serial.print("Verbindung zu ");
-    Serial.println(ssid);
+    displayFull.clear();
+    displayFull.println("WLAN ...");
+    displayFull.println(ssid);
+
+    Log.info("Verbindung zu ");
+    Log.infoln(ssid);
 
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, pass);
 
     while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
+      delay(2000);
+      Log.infoln(".");
     }
 
-    Serial.println("");
-    Serial.print("Verbindung zu.: ");
-    Serial.println(ssid);
-    Serial.print("IP Adresse....: ");
-    Serial.println(WiFi.localIP());
+    displayFull.clear();
+    displayFull.println("CONNECT");
+
+    Log.infoln("");
+    Log.noticeln("Verbindung hergestellt: %s", ssid);
+    Log.noticeln("IP Adresse............: %s", WiFi.localIP().toString().c_str());
+
+    delay(1000);
   }
   catch (const runtime_error &e) {
-    printf("Exception aufgetreten!\n%s\n", e.what());
+    Log.noticeln("Exception aufgetreten!" CR "%s", e.what());
   }
 
-  printf("\n<--- Wifi Setup fertig\n");
+  Log.traceln("<--- Wifi Setup fertig");
 }

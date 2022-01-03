@@ -1,3 +1,10 @@
+//
+// Created by ralf on 03.01.22.
+//
+
+#ifndef AQUAMAT_PUMPCONTROLER_HPP
+#define AQUAMAT_PUMPCONTROLER_HPP
+
 #include "pins/pinsControler.hpp"
 
 // Set LED_BUILTIN if it is not defined by Arduino framework
@@ -26,3 +33,5 @@ void setPump(int pump);
 void togglePump(int pump);
 
 void toggleDirection(int pump);
+
+#endif //AQUAMAT_PUMPCONTROLER_HPP

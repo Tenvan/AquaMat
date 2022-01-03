@@ -1,3 +1,10 @@
+//
+// Created by ralf on 03.01.22.
+//
+
+#ifndef AQUAMAT_WIFICONTROLER_HPP
+#define AQUAMAT_WIFICONTROLER_HPP
+
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiClient.h>
@@ -9,3 +16,5 @@
 #define WIFI_PW "KjkZ4trvM4nm7m"
 
 void setup_wifi();
+
+#endif //AQUAMAT_WIFICONTROLER_HPP
