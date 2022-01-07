@@ -1,0 +1,46 @@
+# I2C Definitionen
+<<: !include ../io/i2c.yaml
+# Font Definitionen
+<<: !include ../utils/fonts.yaml
+
+esphome:
+  libraries:
+    - greiman/SSD1306Ascii
+
+display:
+  platform: ssd1306_i2c
+  model: "SSD1306 128x32"
+  address: 0x3C
+  id: mainDisplay
+  pages:
+    - id: pageTime
+      lambda: |-        
+        static int i = 0;
+        i++;
+        if ((i % 2) == 0)
+          it.strftime(0, 0, id(systemFont), "%X 24.5°C", id(mytime));
+        else
+          it.strftime(0, 0, id(systemFont), "%X ~~.~~", id(mytime));
+    
+        it.strftime(0, 16, id(systemFont), "%d.%m.%Y", id(mytime));
+
+    - id: pagePumpe1
+      lambda: |-
+        it.printf(0, 0, id(systemFont), "P1: %s", "NPK");
+        it.printf(0, 16, id(systemFont), "N: %03dml %02d:%02d", 30, 1, 5);       
+
+    - id: pagePumpe2
+      lambda: |-
+        it.printf(0, 0, id(systemFont), "P2: %s", "GH Boost");
+        it.printf(0, 16, id(systemFont), "N: %03dml %02d:%02d", 5, 22, 0);       
+
+    - id: pagePumpe3
+      lambda: |-
+        it.printf(0, 0, id(systemFont), "P3: %s", "Fe");
+        it.printf(0, 16, id(systemFont), "N: %03dml %02d:%02d", 0, 0, 0);       
+
+interval:
+  - interval: 5s
+    then:
+      - display.page.show_next: mainDisplay
+      - component.update: mainDisplay

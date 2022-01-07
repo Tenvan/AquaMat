@@ -1,0 +1,13 @@
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    on_time:
+      # Every 10 seconds
+      - seconds: /1
+        then:
+          lambda: |-
+            id(mytime) = id(homeassistant_time).now();
+
+    on_time_sync:
+      then:
+        - logger.log: "Systemuhr synchronisiert"

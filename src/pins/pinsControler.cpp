@@ -32,7 +32,7 @@ double getTemperatur() {
 
   if (now - lastTemperaturRefresh > 5000) {
     lastTemperaturRefresh = now;
-    currentTemperatur = random(15, 34);
+    currentTemperatur = random(150, 340) / 10;
   }
   return currentTemperatur;
 }

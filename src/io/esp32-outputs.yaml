@@ -1,0 +1,24 @@
+output:
+  # Pumpen Anschluss 1
+  - id: pump_1_left
+    platform: gpio
+    pin: GPIO26
+  - id: pump_1_right
+    platform: gpio
+    pin: GPIO25
+
+  # Pumpen Anschluss 2
+  - id: pump_2_left
+    platform: gpio
+    pin: GPIO17
+  - id: pump_2_right
+    platform: gpio
+    pin: GPIO16
+
+  # Pumpen Anschluss 3
+  - id: pump_3_left
+    platform: gpio
+    pin: GPIO27
+  - id: pump_3_right
+    platform: gpio
+    pin: GPIO14

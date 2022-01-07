@@ -1,0 +1,20 @@
+mqtt:
+  broker: !secret mqtt_server
+  username: !secret mqtt_user
+  password: !secret mqtt_pw
+  port: 1883
+  client_id: AquaMat
+  id: mqtt_client
+  birth_message:
+    topic: AquaMat/Availability
+    payload: online
+  will_message:
+    topic: AquaMat/Availability
+    payload: offline
+  on_message:
+    - topic: AquaMat/#
+      qos: 0
+      then:
+        - logger.log:
+            format: "MQTT Message: %s\n"
+            args: [ 'x.c_str()' ]

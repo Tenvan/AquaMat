@@ -3,14 +3,14 @@
 #include "ArduinoLog.h"
 #include "logger.hpp"
 
+long lastSerial = 0;
+
 void setupLogger() {
   Serial.begin(115200);
-  while (!Serial && !Serial.available()) {}
-
   Log.setPrefix(printPrefix); // set prefix similar to NLog
   Log.setSuffix(printSuffix); // set suffix
   Log.begin(LOG_LEVEL_INFO, &Serial);
-  Log.setShowLevel(false);    // Do not show loglevel, we will do this in the prefix
+  Log.setShowLevel(false);      // Do not show loglevel, we will do this in the prefix
 }
 
 void printTimestamp(Print *_logOutput) {
@@ -66,7 +66,7 @@ void printLogLevel(Print *_logOutput, int logLevel) {
 }
 
 void printSuffix(Print *_logOutput, int logLevel) {
-  _logOutput->print("");
+  _logOutput->println();
 }
 
 void printPrefix(Print *_logOutput, int logLevel) {

@@ -1,0 +1,24 @@
+output:
+  # Pumpen Anschluss 1
+  - id: pump_1_forward
+    platform: esp8266_pwm
+    pin: D1
+  - id: pump_1_reverse
+    platform: esp8266_pwm
+    pin: D3
+
+  # Pumpen Anschluss 2
+  - id: pump_2_forward
+    platform: esp8266_pwm
+    pin: D2
+  - id: pump_2_reverse
+    platform: esp8266_pwm
+    pin: D4
+
+  # Pumpen Anschluss 3
+  - id: pump_3_forward
+    platform: esp8266_pwm
+    pin: D5
+  - id: pump_3_reverse
+    platform: esp8266_pwm
+    pin: D6
