@@ -1,0 +1,17 @@
+binary_sensor:
+
+  - platform: gpio
+    id: OUT_GPIO34
+    pin: GPIO34
+
+  - platform: gpio
+    id: OUT_GPIO35
+    pin: GPIO35
+
+  - platform: gpio
+    id: OUT_GPIO36
+    pin: GPIO36
+
+  - id: OUT_GPIO39
+    platform: gpio
+    pin: GPIO39

@@ -3,10 +3,6 @@
 # Font Definitionen
 <<: !include ../utils/fonts.yaml
 
-esphome:
-  libraries:
-    - greiman/SSD1306Ascii
-
 display:
   platform: ssd1306_i2c
   model: "SSD1306 128x32"
@@ -40,7 +36,8 @@ display:
         it.printf(0, 16, id(systemFont), "N: %03dml %02d:%02d", 0, 0, 0);       
 
 interval:
-  - interval: 5s
+  - id: mainDisplayLoop
+    interval: 5s
     then:
       - display.page.show_next: mainDisplay
       - component.update: mainDisplay

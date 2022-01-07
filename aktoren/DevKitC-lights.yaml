@@ -1,0 +1,64 @@
+light:
+#  - platform: binary
+#    name: "OUT GPIO1 Light"
+#    output: OUT_GPIO1
+#  - platform: binary
+#    name: "OUT GPIO3 Light"
+#    output: OUT_GPIO3
+#  - platform: binary
+#    name: "OUT GPIO5 Light"
+#    output: OUT_GPIO5
+
+#  - platform: binary
+#    name: "OUT GPIO12 Light"
+#    output: OUT_GPIO12
+#  - platform: binary
+#    name: "OUT GPIO13 Light"
+#    output: OUT_GPIO13
+#  - platform: binary
+#    name: "OUT GPIO14 Light"
+#    output: OUT_GPIO14
+
+  # I2C IOs
+#  - platform: binary
+#    name: "OUT GPIO16 Light"
+#    output: OUT_GPIO16
+#  - platform: binary
+#    name: "OUT GPIO17 Light"
+#    output: OUT_GPIO17
+
+#  - platform: binary
+#    name: "OUT GPIO18 Light"
+#    output: OUT_GPIO18
+#  - platform: binary
+#    name: "OUT GPIO19 Light"
+#    output: OUT_GPIO19
+
+# I2C IOs
+#  - platform: binary
+#    name: "OUT GPIO21 Light"
+#    output: OUT_GPIO21
+#  - platform: binary
+#    name: "OUT GPIO22 Light"
+#    output: OUT_GPIO22
+
+#  - platform: binary
+#    name: "OUT GPIO23 Light"
+#    output: OUT_GPIO23
+
+#  - platform: binary
+#    name: "OUT GPIO25 Light"
+#    output: OUT_GPIO25
+#  - platform: binary
+#    name: "OUT GPIO26 Light"
+#    output: OUT_GPIO26
+#  - platform: binary
+#    name: "OUT GPIO27 Light"
+#    output: OUT_GPIO27
+
+#  - platform: binary
+#    name: "OUT GPIO32 Light"
+#    output: OUT_GPIO32
+#  - platform: binary
+#    name: "OUT GPIO32 Light"
+#    output: OUT_GPIO32

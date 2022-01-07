@@ -1,6 +1,6 @@
 time:
-  - platform: homeassistant
-    id: homeassistant_time
+  - id: homeassistant_time
+    platform: homeassistant
     on_time:
       # Every 10 seconds
       - seconds: /1

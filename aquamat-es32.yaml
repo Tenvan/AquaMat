@@ -1,0 +1,25 @@
+substitutions:
+  platform: esp32
+
+packages:
+  device_base: !include aquamat-base.yaml
+
+esphome:
+  comment: $upper_devicename for $platform (mit sdd1306 Display)
+
+esp32:
+  board: az-delivery-devkit-v4
+
+# Display Definition
+<<: !include displays/sdd1306.yaml
+
+# Input Definitionen
+<<: !include io/esp32-inputs.yaml
+
+# Output Definitionen
+#<<: !include io/esp32-outputs.yaml
+<<: !include io/DevKitC-outputs.yaml
+
+# LEDs
+#<<: !include io/esp32-lights.yaml
+<<: !include aktoren/DevKitC-lights.yaml

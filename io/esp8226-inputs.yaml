@@ -1,0 +1,29 @@
+binary_sensor:
+
+  - platform: gpio
+    id: IN_D0
+    pin: D0
+  - platform: gpio
+    id: IN_D1
+    pin: D1
+  - platform: gpio
+    id: IN_D2
+    pin: D2
+  - platform: gpio
+    id: IN_D3
+    pin: D3
+  - platform: gpio
+    id: IN_D4
+    pin: D4
+  - platform: gpio
+    id: IN_D5
+    pin: D5
+  - platform: gpio
+    id: IN_D6
+    pin: D6
+  - platform: gpio
+    id: IN_D7
+    pin: D7
+  - platform: gpio
+    id: IN_D8
+    pin: D8

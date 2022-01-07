@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3600a822-a4f9-4b9a-9822-92afe518484b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/aquamat-base.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aquamat-es32.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aquamat-es8226.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/displays/sdd1306.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/buttons.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/esp32-inputs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/esp32-lights.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/esp32-outputs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/esp8226-inputs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/esp8226-lights.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/esp8226-outputs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/i2c.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/sensors.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/motors/pumps.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mqtt/mqtt.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mqtt/secrets.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ota/ota.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/fonts.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/time.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wifi/secrets.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wifi/wifi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AquaMat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AquaMat.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aquamat-base.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aquamat-es8226.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/displays/sdd1306.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/buttons.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/esp32-outputs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/esp8226-inputs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/esp8226-outputs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/i2c.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/lights.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/sensors.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logger.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logger.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/motors/pumps.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mqtt/mqtt.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mqtt/secrets.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ota/ota.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pins/pinsControler.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pins/pinsControler.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/secrets.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/fonts.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/time.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wifi/secrets.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wifi/wifi.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/README" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="99ycn86c" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="23MqkZSFqYPNQosbcyP01T65INO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/io" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/io" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.esp32_generate">
+    <configuration name="esp32_compile" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp32_compile" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="esp32_config" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp32_config" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="esp32_generate" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp32_generate" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="esp32_run" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp32_run" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="esp32_watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp32_watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.esp32_compile" />
+        <item itemvalue="npm.esp32_config" />
+        <item itemvalue="npm.esp32_generate" />
+        <item itemvalue="npm.esp32_run" />
+        <item itemvalue="npm.esp32_watch" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3600a822-a4f9-4b9a-9822-92afe518484b" name="Changes" comment="" />
+      <created>1641554447727</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1641554447727</updated>
+      <workItem from="1641554449298" duration="22000" />
+      <workItem from="1641554478519" duration="37000" />
+      <workItem from="1641555288834" duration="84000" />
+      <workItem from="1641555384543" duration="81000" />
+      <workItem from="1641555476725" duration="621000" />
+      <workItem from="1641556110979" duration="4066000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

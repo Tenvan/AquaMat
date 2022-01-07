@@ -1,0 +1,28 @@
+light:
+  - platform: binary
+    name: "OUT D0 Light"
+    output: OUT_D0
+  - platform: binary
+    name: "OUT D1 Light"
+    output: OUT_D1
+  - platform: binary
+    name: "OUT D2 Light"
+    output: OUT_D2
+  - platform: binary
+    name: "OUT D3 Light"
+    output: OUT_D3
+  - platform: binary
+    name: "OUT D4 Light"
+    output: OUT_D4
+  - platform: binary
+    name: "OUT D5 Light"
+    output: OUT_D5
+  - platform: binary
+    name: "OUT D6 Light"
+    output: OUT_D6
+  - platform: binary
+    name: "OUT D7 Light"
+    output: OUT_D7
+  - platform: binary
+    name: "OUT D8 Light"
+    output: OUT_D8

@@ -3,4 +3,4 @@ sensor:
     name: "Temperatur"
     lambda: |-
       return random(200, 350) / 10;
-    update_interval: 2s
+    update_interval: 60s

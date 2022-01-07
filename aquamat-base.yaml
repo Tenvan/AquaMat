@@ -7,11 +7,14 @@ packages:
   # Wifi Definition
   wifi: !include wifi/wifi.yaml
   # OTA Definition
-  ota: !include ota/ota.yaml
+#  ota: !include ota/ota.yaml
   # MQTT Definition
-  mqtt: !include mqtt/mqtt.yaml
+#  mqtt: !include mqtt/mqtt.yaml
 
 esphome:
+  libraries:
+    - greiman/SSD1306Ascii
+
   comment: $upper_devicename for $platform
   name: $devicename
   name_add_mac_suffix: true
@@ -31,10 +34,9 @@ logger:
 api:
   password: "0f56927cab6822b10952ae56aa1a1530"
 
-#demo:
+demo:
 
 globals:
-  # time state
   - id: mytemperature
     type: int
     restore_value: yes
@@ -46,13 +48,10 @@ globals:
 <<: !include utils/time.yaml
 
 # Pumpen Definition
-<<: !include motors/pumps.yaml
+<<: !include aktoren/pumps.yaml
 
 # Sensoren
-<<: !include io/sensors.yaml
+<<: !include aktoren/sensors.yaml
 
 # Buttons
-<<: !include io/buttons.yaml
-
-# LEDs
-<<: !include io/lights.yaml
+<<: !include aktoren/buttons.yaml
