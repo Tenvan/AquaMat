@@ -1,6 +1,7 @@
 font:
   #  - file: "/usr/share/fonts/nerd-fonts-complete/TTF/Noto Sans Display Bold Nerd Font Complete.ttf"
-  - file: "/usr/share/fonts/nerd-fonts-complete/TTF/Iosevka Term Medium Nerd Font Complete.ttf"
-    id: systemFont
-    size: 15
-    glyphs: ~!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+  - id: systemFont
+#    file: "/usr/share/fonts/nerd-fonts-complete/TTF/Iosevka Term Medium Nerd Font Complete.ttf"
+    file: "/usr/share/fonts/nerd-fonts-complete/TTF/Hack Bold Nerd Font Complete Mono.ttf"
+    size: 16
+    glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß

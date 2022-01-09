@@ -1,0 +1,4 @@
+# Standard I2C Konfiguration
+i2c:
+  sda: SDA
+  scl: SCL

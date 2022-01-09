@@ -10,16 +10,45 @@ esphome:
 esp32:
   board: az-delivery-devkit-v4
 
-# Display Definition
-<<: !include displays/sdd1306.yaml
+###########################################################
+# IO Controler
+#
+# I2C Definitionen
+#<<: !include io/DevKitC-i2c.yaml
+# SPI Definitionen
+i2c:
 
+<<: !include io/DevKitC-spi.yaml
+#
+###########################################################
+
+###########################################################
+# Display Definitionen
+#
+# Font Definitionen
+<<: !include utils/fonts.yaml
+#
+
+# Display Driver
+#<<: !include displays/sdd1306.yaml
+<<: !include displays/st7735.yaml
+#<<: !include displays/st7789.yaml
+#  <<: !include displays/ili9341.yaml
+#
+###########################################################
+
+###########################################################
+# Pin Belegung
+#
 # Input Definitionen
 <<: !include io/esp32-inputs.yaml
-
+#
 # Output Definitionen
 #<<: !include io/esp32-outputs.yaml
 <<: !include io/DevKitC-outputs.yaml
-
+#
 # LEDs
 #<<: !include io/esp32-lights.yaml
 <<: !include aktoren/DevKitC-lights.yaml
+#
+###########################################################

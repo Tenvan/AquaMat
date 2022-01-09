@@ -1,0 +1,2 @@
+# Standard Konfiguration laden
+<<: !include base-i2c.yaml

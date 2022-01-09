@@ -1,7 +1,7 @@
 substitutions:
   devicename: aquamat
   upper_devicename: AquaMat
-  platform: esp8226
+  platform: esp8266
 
 packages:
   # Wifi Definition
@@ -13,7 +13,7 @@ packages:
 
 esphome:
   libraries:
-    - greiman/SSD1306Ascii
+#    - greiman/SSD1306Ascii
 
   comment: $upper_devicename for $platform
   name: $devicename
@@ -34,8 +34,12 @@ logger:
 api:
   password: "0f56927cab6822b10952ae56aa1a1530"
 
-demo:
+#demo:
 
+#############################################################
+# Globale Variablen
+# und andere Definitionen
+#
 globals:
   - id: mytemperature
     type: int
@@ -43,9 +47,23 @@ globals:
   - id: mytime
     type: ESPTime
     restore_value: no
+    # Standrad Font Größe (für Zeilenberechungen)
+  - id: systemFontSize
+    type: int
+    restore_value: no
+    initial_value: '16'
+
+# Farben
+<<: !include utils/colors.yaml
+#
+#############################################################
+
 
 # Timer Events
 <<: !include utils/time.yaml
+
+# Automatitionen
+<<: !include utils/interval.yaml
 
 # Pumpen Definition
 <<: !include aktoren/pumps.yaml

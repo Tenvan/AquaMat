@@ -1,0 +1,25 @@
+#############################################################
+# Diverse Farbdefinitionen
+#############################################################
+
+color:
+  - id: COLOR_RED
+    red: 100%
+    green: 0%
+    blue: 0%
+  - id: COLOR_GREEN
+    red: 0%
+    green: 100%
+    blue: 0%
+  - id: COLOR_BLUE
+    red: 0%
+    green: 0%
+    blue: 100%
+  - id: COLOR_YELLOW
+    red: 95%
+    green: 95%
+    blue: 5%
+  - id: COLOR_ORANGE
+    red: 95%
+    green: 60%
+    blue: 3%

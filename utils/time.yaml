@@ -1,3 +1,8 @@
+#############################################################
+# Zeit Synchronisierung
+# See: https://esphome.io/components/time.html
+#############################################################
+
 time:
   - id: homeassistant_time
     platform: homeassistant

@@ -1,6 +1,13 @@
+# Definition der Sensoren
+
+# Example configuration entry
+dallas:
+  - id: dallasWaterSensor
+    pin: D0
+
+# Individual sensors
 sensor:
-  - platform: template
-    name: "Temperatur"
-    lambda: |-
-      return random(200, 350) / 10;
-    update_interval: 60s
+  - platform: dallas
+    id: waterSensor
+    index: 0
+    name: "Wassertemperatur"

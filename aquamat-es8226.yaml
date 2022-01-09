@@ -1,5 +1,5 @@
 substitutions:
-  platform: esp8226
+  platform: esp8266
 
 packages:
   device_base: !include aquamat-base.yaml
@@ -10,14 +10,42 @@ esphome:
 esp8266:
   board: nodemcuv2
 
-# Display Definition
-#<<: !include displays/sdd1306.yaml
+###########################################################
+# IO Controler
+#
+# I2C Definitionen
+#<<: !include io/DevKitC-i2c.yaml
+# SPI Definitionen
+#<<: !include io/i2c/esp8266-i2c.yaml
+#<<: !include io/spi/esp8266-spi.yaml
+#
+###########################################################
 
+###########################################################
+# Display Definitionen
+#
+# Font Definitionen
+#<<: !include utils/fonts.yaml
+#
+
+# Display Driver
+#<<: !include displays/sdd1306.yaml
+#<<: !include displays/st7735.yaml
+#<<: !include displays/st7789.yaml
+#  <<: !include displays/ili9341.yaml
+#
+###########################################################
+
+###########################################################
+# Pin Belegung
+#
 # Input Definitionen
-<<: !include io/esp8226-inputs.yaml
+<<: !include io/inputs/esp8266-inputs.yaml
 
 # Output Definitionen
-<<: !include io/esp8226-outputs.yaml
+<<: !include io/outputs/esp8266-outputs.yaml
 
 # LEDs
-<<: !include aktoren/esp8226-lights.yaml
+<<: !include aktoren/esp8266-lights.yaml
+#
+###########################################################

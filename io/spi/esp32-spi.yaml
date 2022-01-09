@@ -1,0 +1,2 @@
+# Standard Konfiguration laden
+<<: !include base-spi.yaml

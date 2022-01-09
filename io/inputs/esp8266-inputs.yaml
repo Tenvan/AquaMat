@@ -1,5 +1,7 @@
-binary_sensor:
+# Definition der digitalen Eingänge
 
+binary_sensor:
+  # Binäre Eingänge
   - platform: gpio
     id: IN_D0
     pin: D0

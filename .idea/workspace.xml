@@ -7,63 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3600a822-a4f9-4b9a-9822-92afe518484b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/aquamat-base.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aquamat-es32.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aquamat-es8226.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/displays/sdd1306.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/buttons.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/esp32-inputs.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/esp32-lights.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/esp32-outputs.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/esp8226-inputs.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/esp8226-lights.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/esp8226-outputs.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/i2c.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/sensors.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/motors/pumps.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mqtt/mqtt.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mqtt/secrets.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ota/ota.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/fonts.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/time.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wifi/secrets.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wifi/wifi.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AquaMat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AquaMat.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aquamat-base.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aquamat-es8226.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/displays/sdd1306.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/buttons.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/esp32-outputs.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/esp8226-inputs.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/esp8226-outputs.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/i2c.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/lights.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/sensors.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logger.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logger.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/motors/pumps.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mqtt/mqtt.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mqtt/secrets.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ota/ota.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pins/pinsControler.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pins/pinsControler.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/secrets.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/fonts.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/time.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wifi/secrets.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wifi/wifi.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/README" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/displays/ili9341.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/displays/st7735.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/displays/st7789.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/i2c/base-i2c.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/i2c/esp32-i2c.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/i2c/esp8266-i2c.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/spi/DevKitC-spi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/spi/base-spi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/spi/esp32-spi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io/spi/esp8266-spi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/colors.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/interval.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aktoren/esp8226-lights.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/esp8266-lights.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aktoren/sensors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/sensors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aquamat-base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-base.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aquamat-es32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-es32.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aquamat-es8226.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-es8226.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/displays/sdd1306.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/sdd1306.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/DevKitC-outputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/outputs/DevKitC-outputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/esp32-inputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/inputs/esp32-inputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/esp32-outputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/outputs/esp32-outputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/esp8226-inputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/inputs/esp8266-inputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/esp8226-outputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/outputs/esp8266-outputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/i2c.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/i2c/DevKitC-i2c.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fonts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fonts.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/time.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/time.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +42,9 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,17 +76,28 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/io" />
+    <property name="code.cleanup.on.save" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/io/i2c" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/io/i2c" />
       <recent name="$PROJECT_DIR$/io" />
+      <recent name="$PROJECT_DIR$/displays" />
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/io/outputs" />
+      <recent name="$PROJECT_DIR$/io/inputs" />
+      <recent name="$PROJECT_DIR$/io/spi" />
+      <recent name="$PROJECT_DIR$/io/i2c" />
+    </key>
   </component>
-  <component name="RunManager" selected="npm.esp32_generate">
+  <component name="RunManager" selected="npm.esp32_compile">
     <configuration name="esp32_compile" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -124,41 +108,41 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="esp32_config" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="esp32_watch_compile" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="esp32_config" />
+        <script value="esp32_watch_compile" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="esp32_generate" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="esp32_watch_config" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="esp32_generate" />
+        <script value="esp32_watch_config" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="esp32_run" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="esp8266_watch_compile" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="esp32_run" />
+        <script value="esp8266_watch_compile" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="esp32_watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="esp8266_watch_config" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="esp32_watch" />
+        <script value="esp8266_watch_config" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -166,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.esp8266_watch_compile" />
+        <item itemvalue="npm.esp8266_watch_config" />
+        <item itemvalue="npm.esp32_watch_compile" />
+        <item itemvalue="npm.esp32_watch_config" />
         <item itemvalue="npm.esp32_compile" />
-        <item itemvalue="npm.esp32_config" />
-        <item itemvalue="npm.esp32_generate" />
-        <item itemvalue="npm.esp32_run" />
-        <item itemvalue="npm.esp32_watch" />
       </list>
     </recent_temporary>
   </component>
@@ -188,11 +172,24 @@
       <workItem from="1641555384543" duration="81000" />
       <workItem from="1641555476725" duration="621000" />
       <workItem from="1641556110979" duration="4066000" />
+      <workItem from="1641650239772" duration="10423000" />
+      <workItem from="1641661375851" duration="20271000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

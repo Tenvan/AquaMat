@@ -1,0 +1,60 @@
+output:
+  # Pumpen 1 Anschluss
+  - id: motor_1_dir
+    platform: gpio
+    pin: D3
+  - id: motor_1_speed
+    platform: esp8266_pwm
+    pin: D2
+
+  # Pumpen 2 Anschluss
+  - id: motor_2_dir
+    platform: gpio
+    pin: D4
+  - id: motor_2_speed
+    platform: esp8266_pwm
+    pin: D1
+
+  # Pumpen 3 Anschluss
+  - id: motor_3_dir
+    platform: gpio
+    pin: D5
+  - id: motor_3_speed
+    platform: esp8266_pwm
+    pin: D6
+
+    # Belegung Temperatur Sensor
+#  - id: OUT_D0
+#    platform: gpio
+#    pin: D0
+
+    # Feste Belegung Motor Shield
+    #  - id: OUT_D1
+    #    platform: gpio
+    #    pin: D1
+    #  - id: OUT_D2
+    #    platform: gpio
+    #    pin: D2
+    #  - id: OUT_D3
+    #    platform: gpio
+    #    pin: D3
+    #  - id: OUT_D4
+    #    platform: gpio
+    #    pin: D4
+
+    # Verwendung für dritten Motor
+    #  - id: OUT_D5
+    #    platform: gpio
+    #    pin: D5
+    #  - id: OUT_D6
+    #    platform: gpio
+    #    pin: D6
+
+  # Achtung: UART Schnittstelle
+  #          bei Verwendung keine serielle Schnittstelle mehr !
+  - id: OUT_D7
+    platform: gpio
+    pin: D7
+  - id: OUT_D8
+    platform: gpio
+    pin: D8

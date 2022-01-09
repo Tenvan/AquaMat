@@ -1,0 +1,65 @@
+#############################################################
+# ST7745 Display (TFT 1.8")
+# See: https://esphome.io/components/display/st7735.html
+#############################################################
+#  VCC	Plus
+#  GND	Minus
+#  CS	Chip Select
+#  RST	Reset (RES)
+#  A0 – D/C – DC	Data Command
+#  SDA – SDI – DIN – MOSI	Data In / Datenleitung (Serial Data Line)
+#  SCK – SCK – CLK – SPI Takt	Clock Takt (Serial Clock Line)
+#  LED – BL	Hintergund Beleuchtung
+#  CE	Chip Enable
+
+# DISPLAY --> ESP
+#---------------------------------------------------
+# VCC	  --> 3V3
+# GND     --> GND
+# SCL     --> GPIO18 (SCL = Serial Clock or SPI SCK)
+# SDA     --> GPIO23 (SDA = Serial Data or SPI MOSI)
+# RES     --> GPIO12 (Reset)
+# DC      --> GPIO13 (D/C = Data/Command)
+# BLK     --> VCC/NULL (BL -> Hintergund Beleuchtung)
+#         --> GPIO5 CS (Chip Select)
+
+display:
+  id: mainDisplay
+  platform: st7789v
+  cs_pin: GPIO05
+  dc_pin: GPIO13
+  reset_pin: GPIO12
+  rotation: 90
+  update_interval: 5s
+  pages:
+    - id: Welcome
+      lambda: |-
+        it.fill(Color::WHITE);
+        it.print(0, 0, id(systemFont), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
+
+    - id: pageTime
+      lambda: |-
+        static int i = 0;
+        i++;
+        if ((i % 2) == 0)
+          it.strftime(0, 0, id(systemFont), "%X 24.5°C", id(mytime));
+        else
+          it.strftime(0, 0, id(systemFont), "%X ~~.~~", id(mytime));
+        
+        it.strftime(0, 16, id(systemFont), "%d.%m.%Y", id(mytime));
+
+    - id: pagePumpe1
+      lambda: |-
+        it.printf(0, 0, id(systemFont), "P1: %s", "NPK");
+        it.printf(0, 16, id(systemFont), "N: %03dml %02d:%02d", 30, 1, 5);       
+
+    - id: pagePumpe2
+      lambda: |-
+        it.printf(0, 0, id(systemFont), "P2: %s", "GH Boost");
+        it.printf(0, 16, id(systemFont), "N: %03dml %02d:%02d", 5, 22, 0);       
+
+    - id: pagePumpe3
+      lambda: |-
+        it.printf(0, 0, id(systemFont), "P3: %s", "Fe");
+        it.printf(0, 16, id(systemFont), "N: %03dml %02d:%02d", 0, 0, 0);       
+

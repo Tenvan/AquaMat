@@ -1,0 +1,12 @@
+#####################################################################
+# Allgemine Timer/Intervalle
+# See: https://esphome.io/guides/automations.html#interval-component
+#####################################################################
+
+interval:
+  - id: mainDisplayLoop
+    interval: 5s
+    then:
+#      - logger.log: Display Loop
+#      - display.page.show_next: mainDisplay
+#      - component.update: mainDisplay

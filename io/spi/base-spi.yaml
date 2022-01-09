@@ -1,0 +1,5 @@
+# Standard SPI Konfiguration
+spi:
+  clk_pin: SCK
+  mosi_pin: MOSI
+  miso_pin: MISO
