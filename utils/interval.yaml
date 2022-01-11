@@ -7,6 +7,5 @@ interval:
   - id: mainDisplayLoop
     interval: 5s
     then:
-#      - logger.log: Display Loop
-#      - display.page.show_next: mainDisplay
-#      - component.update: mainDisplay
+      - display.page.show_next: mainDisplay
+      - component.update: mainDisplay

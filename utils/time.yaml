@@ -6,12 +6,6 @@
 time:
   - id: homeassistant_time
     platform: homeassistant
-    on_time:
-      # Every 10 seconds
-      - seconds: /1
-        then:
-          lambda: |-
-            id(mytime) = id(homeassistant_time).now();
 
     on_time_sync:
       then:

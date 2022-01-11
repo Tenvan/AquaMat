@@ -1,0 +1,19 @@
+#####################################################################
+# Allgemine Timer/Intervalle
+# See: https://esphome.io/guides/automations.html#interval-component
+#####################################################################
+
+interval:
+  - id: pageLoop
+    interval: 5s
+    then:
+      - display.page.show_next: displayOled
+      - display.page.show_next: displayTft
+      - component.update: displayOled
+      - component.update: displayTft
+
+  - id: headerLoop
+    interval: 1s
+    then:
+      - component.update: displayOled
+      - component.update: displayTft

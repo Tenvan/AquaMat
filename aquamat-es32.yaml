@@ -14,11 +14,9 @@ esp32:
 # IO Controler
 #
 # I2C Definitionen
-#<<: !include io/DevKitC-i2c.yaml
+<<: !include io/i2c/DevKitC-i2c.yaml
 # SPI Definitionen
-i2c:
-
-<<: !include io/DevKitC-spi.yaml
+<<: !include io/spi/DevKitC-spi.yaml
 #
 ###########################################################
 
@@ -30,10 +28,7 @@ i2c:
 #
 
 # Display Driver
-#<<: !include displays/sdd1306.yaml
-<<: !include displays/st7735.yaml
-#<<: !include displays/st7789.yaml
-#  <<: !include displays/ili9341.yaml
+<<: !include displays/DevKitC.yaml
 #
 ###########################################################
 
@@ -41,14 +36,26 @@ i2c:
 # Pin Belegung
 #
 # Input Definitionen
-<<: !include io/esp32-inputs.yaml
+<<: !include io/inputs/esp32-inputs.yaml
 #
 # Output Definitionen
 #<<: !include io/esp32-outputs.yaml
-<<: !include io/DevKitC-outputs.yaml
+<<: !include io/outputs/DevKitC-outputs.yaml
 #
 # LEDs
 #<<: !include io/esp32-lights.yaml
 <<: !include aktoren/DevKitC-lights.yaml
 #
 ###########################################################
+
+###########################################################
+# Individuelle Hardware
+#
+# Sensoren
+
+<<: !include aktoren/DevKitC-sensors.yaml
+#
+###########################################################
+
+# Automatitionen
+<<: !include utils/DevKitC-interval.yaml

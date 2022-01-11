@@ -2,6 +2,7 @@
   "name": "anqua-mat",
   "version": "1.0.0",
   "scripts": {
+    "clean:all": "rimraf -f .esphome",
     "esp8266_config": "esphome config aquamat-es8226.yaml > .esphome/build-esp8266.yaml",
     "esp32_config": "esphome config aquamat-es32.yaml > .esphome/build-esp32.yaml",
     "esp8266_generate": "esphome compile --only-generate aquamat-es8226.yaml",
@@ -14,10 +15,10 @@
     "esp32_run_USB0": "yarn esp32_run --device /dev/ttyUSB0",
     "esp8266_run_USB1": "yarn esp8266_run --device /dev/ttyUSB1",
     "esp32_run_USB1": "yarn esp32_run --device /dev/ttyUSB1",
-    "esp8266_watch_compile": "watchexec -rcN -e yaml -i .esphome  'yarn esp8266_compile'",
-    "esp32_watch_compile": "watchexec -rcN -e yaml -i .esphome  'yarn esp32_compile'",
-    "esp8266_watch_config": "watchexec -rcN -e yaml -i .esphome 'yarn esp8266_config'",
-    "esp32_watch_config": "watchexec -rcN -e yaml -i .esphome  'yarn esp32_config'"
+    "esp8266_watch_compile": "watchexec -rcN -e yaml,c,cpp,h,hpp -i .esphome  'yarn esp8266_compile'",
+    "esp32_watch_compile": "watchexec -rcN -e yaml,c,cpp,h,hpp -i .esphome  'yarn esp32_compile'",
+    "esp8266_watch_config": "watchexec -rcN -e yaml,c,cpp,h,hpp -i .esphome 'yarn esp8266_config'",
+    "esp32_watch_config": "watchexec -rcN -e yaml,c,cpp,h,hpp -i .esphome  'yarn esp32_config'"
   },
   "private": true,
   "dependencies": {

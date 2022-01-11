@@ -1,0 +1,201 @@
+#############################################################
+# ST7745 Display (TFT 1.8")
+# See: https://esphome.io/components/display/st7735.html
+#############################################################
+#  VCC	Plus
+#  GND	Minus
+#  CS	Chip Select
+#  RST	Reset (RES)
+#  A0 – D/C – DC	Data Command
+#  SDA – SDI – DIN – MOSI	Data In / Datenleitung (Serial Data Line)
+#  SCK – SCK – CLK – SPI Takt	Clock Takt (Serial Clock Line)
+#  LED – BL	Hintergund Beleuchtung
+#  CE	Chip Enable
+
+# Board Models:
+#  INITR_BLACKTAB
+#  INITR_GREENTAB
+#  INITR_REDTAB
+#  INITR_MINI160X80
+#  INITR_18BLACKTAB
+#  INITR_18REDTAB
+
+# Anschluss Az-Delivery TFT ST7735
+# Anschluss Az-Delivery TFT ST7735
+
+#---------------------------------------------------
+# DISPLAY --> ESP
+#---------------------------------------------------
+# VCC	  --> 3V3
+# GND     --> GND
+# CS      --> * SS/GPI13  CS = Chip Select
+# RES     --> -1 (Reset)
+# A0      --> * GPIO12    A0/DC = Data/Command
+# SDA     --> GPIO23      SDA = Serial Data or SPI MOSI
+# SCK     --> GPIO18      CLK/SCL = Serial Clock or SPI SCK
+# BLK     --> VCC/NULL    BL = Hintergund Beleuchtung
+#---------------------------------------------------
+#
+# Model: INITR_BLACKTAB
+
+display:
+  - platform: st7735
+    id: displayTft
+    model: "INITR_BLACKTAB"
+    cs_pin: GPIO13
+    dc_pin: GPIO12
+    rotation: 270
+    device_width: 128
+    device_height: 160
+    col_start: 0
+    row_start: 0
+    eight_bit_color: true
+    update_interval: 5s
+
+    pages:
+      - id: tftWelcome
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+
+          render_display_header(&it, font);
+
+          it.print(0, lineHeight*2, font, id(COLOR_GREEN), TextAlign::TOP_LEFT, "Hello World!");
+          it.print(0, lineHeight*3, font, id(COLOR_BLUE), TextAlign::TOP_LEFT, "Hello World!");
+          it.print(0, lineHeight*4, font, id(COLOR_RED), TextAlign::TOP_LEFT, "Hello World!");
+          it.print(0, lineHeight*5, font, id(COLOR_ORANGE), TextAlign::TOP_LEFT, "Hello World!");
+
+      - id: tftPageTime
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+
+          render_display_header(&it, font);
+
+          it.print(0, lineHeight*2, font, id(COLOR_RED), "Temperatur:");
+          it.print(0, lineHeight*3, font, id(COLOR_RED), " 24.5°C");
+
+      - id: tftPagePumpe1
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+
+          render_display_header(&it, font);
+
+          it.printf(0, lineHeight*2, font, "Pumpe 1:");
+          it.printf(0, lineHeight*3, font, "%s", "NPK");
+          it.print(0, lineHeight*5, font, "Nächste Dosis:");
+          it.printf(0, lineHeight*6, font, "%03dml %02d:%02d", 30, 1, 5);
+
+      - id: tftPagePumpe2
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+          
+          render_display_header(&it, font);
+
+          it.printf(0, lineHeight*2, font, "Pumpe 2:");
+          it.printf(0, lineHeight*3, font, "%s", "GH Boost");
+          it.print(0, lineHeight*5, font, "Nächste Dosis:");
+          it.printf(0, lineHeight*6, font, "%03dml %02d:%02d", 2, 22, 0);
+
+      - id: tftPagePumpe3
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+
+          render_display_header(&it, font);
+
+          it.printf(0, lineHeight*2, font, "Pumpe 3:");
+          it.printf(0, lineHeight*3, font, "%s", "Eisen");
+          it.print(0, lineHeight*4, font, "Nächste Dosis:");
+          it.printf(0, lineHeight*6, font, "%03dml %02d:%02d", 5, 48, 0);
+
+  #############################################################
+  # SDD1306 Display (OLED)
+  # See:
+  #############################################################
+  - platform: ssd1306_i2c
+    id: displayOled
+    model: "SH1106 128x64"
+    address: 0x3C
+
+    pages:
+      - id: oledWelcome
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+          
+          render_display_header(&it, font);
+          
+          it.printf(colStart, lineHeight*1, font, TextAlign::TOP_LEFT, "Network:");
+          it.printf(colStart, lineHeight*2, font, TextAlign::TOP_LEFT, "%s", App.get_name().c_str());
+          it.printf(colStart, lineHeight*3, font, TextAlign::TOP_LEFT, "%s", id(wifiConnect).wifi_sta_ip().str().c_str());
+          int8_t rssi = id(wifiConnect).wifi_rssi();
+          it.printf(colStart, lineHeight*4, font, TextAlign::TOP_LEFT, "Signal: %d dB", rssi);
+
+      - id: oledTemperatur
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+          
+          render_display_header(&it, font);
+
+          it.print(colStart, lineHeight*2, font, "Temperatur:");
+          it.print(colStart, lineHeight*3, font, " 24.5°C");
+
+      - id: oledPagePumpe1
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+
+          render_display_header(&it, font);
+
+          it.printf(colStart, lineHeight*1, font, "Pumpe 1:");
+          it.printf(colStart, lineHeight*2, font, "%s", "NPK");
+          it.printf(colStart, lineHeight*3, font, "Nächste Dosis:");
+          it.printf(colStart, lineHeight*4, font, "%03dml %02d:%02d", 30, 1, 5);
+
+      - id: oledPagePumpe2
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+          
+          render_display_header(&it, font);
+
+          it.printf(colStart, lineHeight*1, font, "Pumpe 2:");
+          it.printf(colStart, lineHeight*2, font, "%s", "GH Boost");
+          it.printf(colStart, lineHeight*3, font, "Nächste Dosis:");
+          it.printf(colStart, lineHeight*4, font, "%03dml %02d:%02d", 2, 22, 0);
+
+      - id: oledPagePumpe3
+        lambda: |-
+          static int displayLines = 5;
+          static int colStart = 1;
+          static int lineHeight = it.get_height() / displayLines;
+          static auto font = id(systemFont);
+          
+          render_display_header(&it, font);
+
+          it.printf(colStart, lineHeight*1, font, "Pumpe 3:");
+          it.printf(colStart, lineHeight*2, font, "%s", "Eisen");
+          it.printf(colStart, lineHeight*3, font, "Nächste Dosis:");
+          it.printf(colStart, lineHeight*4, font, "%03dml %02d:%02d", 5, 48, 0);

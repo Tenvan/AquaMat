@@ -1,4 +1,4 @@
-light:
+#light:
   # Belegung Temperatur Sensor
 #  - platform: binary
 #    name: "OUT D0 Light"
@@ -28,9 +28,9 @@ light:
 
   # Achtung: UART Schnittstelle
   #          bei Verwendung keine serielle Schnittstelle mehr !
-  - platform: binary
-    name: "OUT D7 Light"
-    output: OUT_D7
-  - platform: binary
-    name: "OUT D8 Light"
-    output: OUT_D8
+#  - platform: binary
+#    name: "OUT D7 Light"
+#    output: OUT_D7
+#  - platform: binary
+#    name: "OUT D8 Light"
+#    output: OUT_D8

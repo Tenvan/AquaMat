@@ -1,2 +1,6 @@
 # Standard Konfiguration laden
-<<: !include base-i2c.yaml
+#<<: !include base-i2c.yaml
+# Standard I2C Konfiguration
+i2c:
+  sda: D6
+  scl: D5

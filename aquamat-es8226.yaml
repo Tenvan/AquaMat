@@ -16,7 +16,7 @@ esp8266:
 # I2C Definitionen
 #<<: !include io/DevKitC-i2c.yaml
 # SPI Definitionen
-#<<: !include io/i2c/esp8266-i2c.yaml
+<<: !include io/i2c/esp8266-i2c.yaml
 #<<: !include io/spi/esp8266-spi.yaml
 #
 ###########################################################
@@ -25,14 +25,12 @@ esp8266:
 # Display Definitionen
 #
 # Font Definitionen
-#<<: !include utils/fonts.yaml
+<<: !include utils/fonts.yaml
 #
-
 # Display Driver
-#<<: !include displays/sdd1306.yaml
-#<<: !include displays/st7735.yaml
-#<<: !include displays/st7789.yaml
-#  <<: !include displays/ili9341.yaml
+<<: !include displays/sdd1306.yaml
+#<<: !include displays/esp8266-st7735.yaml
+#<<: !include displays/ili9341.yaml
 #
 ###########################################################
 
@@ -49,3 +47,15 @@ esp8266:
 <<: !include aktoren/esp8266-lights.yaml
 #
 ###########################################################
+
+###########################################################
+# Individuelle Hardware
+#
+# Sensoren
+
+<<: !include aktoren/sensors.yaml
+#
+###########################################################
+
+# Automatitionen
+<<: !include utils/interval.yaml

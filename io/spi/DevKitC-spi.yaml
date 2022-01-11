@@ -1,2 +1,7 @@
 # Standard Konfiguration laden
-<<: !include base-spi.yaml
+#<<: !include base-spi.yaml
+
+spi:
+  clk_pin: SCK
+  mosi_pin: GPIO2 #MOSI
+  miso_pin: GPIO4 #MISO

@@ -7,13 +7,14 @@ packages:
   # Wifi Definition
   wifi: !include wifi/wifi.yaml
   # OTA Definition
-#  ota: !include ota/ota.yaml
+  ota: !include ota/ota.yaml
   # MQTT Definition
 #  mqtt: !include mqtt/mqtt.yaml
 
 esphome:
-  libraries:
-#    - greiman/SSD1306Ascii
+  # Custom Code
+  includes:
+    - lib
 
   comment: $upper_devicename for $platform
   name: $devicename
@@ -40,18 +41,7 @@ api:
 # Globale Variablen
 # und andere Definitionen
 #
-globals:
-  - id: mytemperature
-    type: int
-    restore_value: yes
-  - id: mytime
-    type: ESPTime
-    restore_value: no
-    # Standrad Font Größe (für Zeilenberechungen)
-  - id: systemFontSize
-    type: int
-    restore_value: no
-    initial_value: '16'
+#globals:
 
 # Farben
 <<: !include utils/colors.yaml
@@ -62,14 +52,8 @@ globals:
 # Timer Events
 <<: !include utils/time.yaml
 
-# Automatitionen
-<<: !include utils/interval.yaml
-
 # Pumpen Definition
 <<: !include aktoren/pumps.yaml
-
-# Sensoren
-<<: !include aktoren/sensors.yaml
 
 # Buttons
 <<: !include aktoren/buttons.yaml

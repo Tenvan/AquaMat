@@ -23,25 +23,25 @@ output:
     platform: ledc
     pin: GPIO14
 
-  - platform: gpio
-    id: OUT_GPIO1
-    pin: GPIO1
-  - platform: gpio
-    id: OUT_GPIO3
-    pin: GPIO3
-  - platform: gpio
-    id: OUT_GPIO5
-    pin: GPIO5
+#  - platform: gpio
+#    id: OUT_GPIO1
+#    pin: GPIO1
+#  - platform: gpio
+#    id: OUT_GPIO3
+#    pin: GPIO3
+#  - platform: gpio
+#    id: OUT_GPIO5
+#    pin: GPIO5
 
-  - platform: gpio
-    id: OUT_GPIO12
-    pin: GPIO12
-  - platform: gpio
-    id: OUT_GPIO13
-    pin: GPIO13
-  - platform: gpio
-    id: OUT_GPIO14
-    pin: GPIO14
+#  - platform: gpio
+#    id: OUT_GPIO12
+#    pin: GPIO12
+#  - platform: gpio
+#    id: OUT_GPIO13
+#    pin: GPIO13
+#  - platform: gpio
+#    id: OUT_GPIO14
+#    pin: GPIO14
 
   # I2C IOs
 #  - platform: gpio
@@ -51,12 +51,12 @@ output:
 #    id: OUT_GPIO17
 #    pin: GPIO17
 
-  - platform: gpio
-    id: OUT_GPIO18
-    pin: GPIO18
-  - platform: gpio
-    id: OUT_GPIO19
-    pin: GPIO19
+#  - platform: gpio
+#    id: OUT_GPIO18
+#    pin: GPIO18
+#  - platform: gpio
+#    id: OUT_GPIO19
+#    pin: GPIO19
 
 # I2C IOs
 #  - platform: gpio
@@ -66,23 +66,23 @@ output:
 #    id: OUT_GPIO22
 #    pin: GPIO22
 
-  - platform: gpio
-    id: OUT_GPIO23
-    pin: GPIO23
+#  - platform: gpio
+#    id: OUT_GPIO23
+#    pin: GPIO23
 
-  - platform: gpio
-    id: OUT_GPIO25
-    pin: GPIO25
-  - platform: gpio
-    id: OUT_GPIO26
-    pin: GPIO26
-  - platform: gpio
-    id: OUT_GPIO27
-    pin: GPIO27
+#  - platform: gpio
+#    id: OUT_GPIO25
+#    pin: GPIO25
+#  - platform: gpio
+#    id: OUT_GPIO26
+#    pin: GPIO26
+#  - platform: gpio
+#    id: OUT_GPIO27
+#    pin: GPIO27
 
-  - platform: gpio
-    id: OUT_GPIO32
-    pin: GPIO32
-  - platform: gpio
-    id: OUT_GPIO33
-    pin: GPIO33
+#  - platform: gpio
+#    id: OUT_GPIO32
+#    pin: GPIO32
+#  - platform: gpio
+#    id: OUT_GPIO33
+#    pin: GPIO33
