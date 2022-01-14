@@ -1,21 +1,21 @@
 fan:
   # Pumpe 1
   - platform: speed
-    name: Dosierpumpe 1
+    name: "Dosierpumpe 1"
     id: pump_1
     direction_output: motor_1_dir
     output: motor_1_speed
 
   # Pumpe 2
   - platform: speed
-    name: Dosierpumpe 2
+    name: "Dosierpumpe 2"
     id: pump_2
     direction_output: motor_2_dir
     output: motor_2_speed
 
   # Pumpe 3
   - platform: speed
-    name: Dosierpumpe 3
+    name: "Dosierpumpe 3"
     id: pump_3
     direction_output: motor_3_dir
     output: motor_3_speed

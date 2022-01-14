@@ -1,0 +1,13 @@
+# Definition der Sensoren
+
+# Example configuration entry
+#dallas:
+#  - id: dallasWaterSensor
+#    pin: GPIO12
+
+# Individual sensors
+#sensor:
+#  - platform: dallas
+#    id: waterSensor
+#    index: 0
+#    name: "Wassertemperatur"

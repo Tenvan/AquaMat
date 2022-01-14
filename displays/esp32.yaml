@@ -20,19 +20,19 @@
 #  INITR_18BLACKTAB
 #  INITR_18REDTAB
 
-# Anschluss Az-Delivery TFT ST7735
+# Anschluss ESP32 Dev Board TFT ST7735
 
 #---------------------------------------------------
 # DISPLAY --> ESP
 #---------------------------------------------------
 # VCC	  --> 3V3
 # GND     --> GND
-# CS      --> * SS/GPI13  CS = Chip Select
+# CS      --> * P5/GPI5/VSPI_CS0  CS = Chip Select
 # RES     --> -1 (Reset)
-# A0      --> * GPIO12    A0/DC = Data/Command
-# SDA     --> GPIO23      SDA = Serial Data or SPI MOSI
-# SCK     --> GPIO18      CLK/SCL = Serial Clock or SPI SCK
-# BLK     --> VCC/NULL    BL = Hintergund Beleuchtung
+# A0      --> * P4/GPIO4          A0/DC = Data/Command
+# SDA     --> P23/GPIO23          SDA = Serial Data or SPI MOSI
+# SCK     --> P18/GPIO18          CLK/SCL = Serial Clock or SPI SCK
+# BLK     --> VCC/NULL            BL = Hintergund Beleuchtung
 #---------------------------------------------------
 #
 # Model: INITR_BLACKTAB
@@ -41,8 +41,9 @@ display:
   - platform: st7735
     id: displayTft
     model: "INITR_BLACKTAB"
-    cs_pin: GPIO13
-    dc_pin: GPIO12
+    reset_pin: GPIO32
+    cs_pin: GPIO5
+    dc_pin: GPIO17
     rotation: 270
     device_width: 128
     device_height: 160
@@ -83,7 +84,7 @@ display:
   #############################################################
   - platform: ssd1306_i2c
     id: displayOled
-    model: "SSD1306 128x32"
+    model: "SH1106 128x64"
     address: 0x3C
 
     pages:

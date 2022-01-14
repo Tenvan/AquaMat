@@ -1,5 +1,5 @@
 substitutions:
-  platform: esp8266
+  platform: esp32
 
 packages:
   device_base: !include aquamat-base.yaml
@@ -7,16 +7,16 @@ packages:
 esphome:
   comment: $upper_devicename for $platform (mit sdd1306 Display)
 
-esp8266:
-  board: nodemcuv2
+esp32:
+  board: az-delivery-devkit-v4
 
 ###########################################################
 # IO Controler
 #
 # I2C Definitionen
-#<<: !include io/i2c/esp8266-i2c.yaml
+<<: !include io/i2c/DevKitC-i2c.yaml
 # SPI Definitionen
-#<<: !include io/spi/esp8266-spi.yaml
+<<: !include io/spi/DevKitC-spi.yaml
 #
 ###########################################################
 
@@ -24,10 +24,11 @@ esp8266:
 # Display Definitionen
 #
 # Font Definitionen
-#<<: !include utils/fonts.yaml
+<<: !include utils/fonts.yaml
 #
+
 # Display Driver
-<<: !include displays/esp8266.yaml
+<<: !include displays/DevKitC.yaml
 #
 ###########################################################
 
@@ -35,13 +36,15 @@ esp8266:
 # Pin Belegung
 #
 # Input Definitionen
-<<: !include io/inputs/esp8266-inputs.yaml
-
+<<: !include io/inputs/DevKitC-inputs.yaml
+#
 # Output Definitionen
-<<: !include io/outputs/esp8266-outputs.yaml
-
+#<<: !include io/esp32-outputs.yaml
+<<: !include io/outputs/DevKitC-outputs.yaml
+#
 # LEDs
-<<: !include aktoren/esp8266-lights.yaml
+#<<: !include io/esp32-lights.yaml
+<<: !include aktoren/DevKitC-lights.yaml
 #
 ###########################################################
 
@@ -50,9 +53,9 @@ esp8266:
 #
 # Sensoren
 
-<<: !include aktoren/esp8266-sensors.yaml
+<<: !include aktoren/DevKitC-sensors.yaml
 #
 ###########################################################
 
 # Automatitionen
-#<<: !include utils/esp8266-interval.yaml
+<<: !include utils/DevKitC-interval.yaml

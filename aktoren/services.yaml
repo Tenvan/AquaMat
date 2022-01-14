@@ -1,0 +1,109 @@
+button:
+
+  - platform: template
+    name: "Pumpe 1 Einzeldosis"
+    id: small_ammount_pump_1
+    on_press:
+      - logger.log: "Pumpe 1 Einzeldosis pressed"
+      - fan.turn_off: pump_1
+      - fan.turn_on:
+          id: pump_1
+          direction: REVERSE
+          speed: 80
+      - delay: 3s
+      - fan.turn_off: pump_1
+      - logger.log: "Pumpe 1 Einzeldosis press finished"
+
+  - platform: template
+    name: "Pumpe 2 Einzeldosis"
+    id: small_ammount_pump_2
+    on_press:
+      - logger.log: "Pumpe 2 Einzeldosis pressed"
+      - fan.turn_off: pump_2
+      - fan.turn_on:
+          id: pump_2
+          direction: REVERSE
+          speed: 80
+      - delay: 3s
+      - fan.turn_off: pump_2
+      - logger.log: "Pumpe 2 Einzeldosis press finished"
+
+  - platform: template
+    name: "Pumpe 3 Einzeldosis"
+    id: small_ammount_pump_3
+    on_press:
+      - logger.log: "Pumpe 3 Einzeldosis pressed"
+      - fan.turn_off: pump_3
+      - fan.turn_on:
+          id: pump_3
+          direction: REVERSE
+          speed: 80
+      - delay: 3s
+      - fan.turn_off: pump_3
+      - logger.log: "Pumpe 1 Einzeldosis press finished"
+
+switch:
+  - platform: template
+    name: "Drain Pump 1"
+    id: drain_pump_1
+    lambda: |-
+      if (id(pump_1).state && id(pump_1).direction == FanDirection::FAN_DIRECTION_REVERSE ) {
+        return true;
+      } else {
+        return false;
+      }
+
+    turn_on_action:
+      - logger.log: "Pumpe 1 Drain gestartet"
+      - fan.turn_on:
+          id: pump_1
+          direction: REVERSE
+          speed: 100
+
+    turn_off_action:
+      - logger.log: "Pumpe 1 Drain gestoppt"
+      - fan.turn_off: pump_1
+
+  - platform: template
+    name: "Drain Pump 2"
+    id: drain_pump_2
+    lambda: |-
+      if (id(pump_2).state && id(pump_2).direction == FanDirection::FAN_DIRECTION_REVERSE ) {
+        return true;
+      } else {
+        return false;
+      }
+
+    turn_on_action:
+      - logger.log: "Pumpe 3 Drain gestartet"
+      - fan.turn_on:
+          id: pump_2
+          direction: REVERSE
+          speed: 100
+
+    turn_off_action:
+      - logger.log: "Pumpe 3 Drain gestoppt"
+      - fan.turn_off: pump_2
+
+
+  - platform: template
+    name: "Drain Pump 3"
+    id: drain_pump_3
+
+    lambda: |-
+      if (id(pump_3).state && id(pump_3).direction == FanDirection::FAN_DIRECTION_REVERSE ) {
+        return true;
+      } else {
+        return false;
+      }
+
+    turn_on_action:
+      - logger.log: "Pumpe 3 Drain gestartet"
+      - fan.turn_on:
+          id: pump_3
+          direction: REVERSE
+          speed: 100
+
+    turn_off_action:
+      - logger.log: "Pumpe 3 Drain gestoppt"
+      - fan.turn_off: pump_3

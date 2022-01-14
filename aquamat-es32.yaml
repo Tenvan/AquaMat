@@ -8,15 +8,15 @@ esphome:
   comment: $upper_devicename for $platform (mit sdd1306 Display)
 
 esp32:
-  board: az-delivery-devkit-v4
+  board: esp32dev
 
 ###########################################################
 # IO Controler
 #
 # I2C Definitionen
-<<: !include io/i2c/DevKitC-i2c.yaml
+<<: !include io/i2c/esp32-i2c.yaml
 # SPI Definitionen
-<<: !include io/spi/DevKitC-spi.yaml
+<<: !include io/spi/esp32-spi.yaml
 #
 ###########################################################
 
@@ -28,7 +28,7 @@ esp32:
 #
 
 # Display Driver
-<<: !include displays/DevKitC.yaml
+<<: !include displays/esp32.yaml
 #
 ###########################################################
 
@@ -40,11 +40,11 @@ esp32:
 #
 # Output Definitionen
 #<<: !include io/esp32-outputs.yaml
-<<: !include io/outputs/DevKitC-outputs.yaml
+<<: !include io/outputs/esp32-outputs.yaml
 #
 # LEDs
 #<<: !include io/esp32-lights.yaml
-<<: !include aktoren/DevKitC-lights.yaml
+<<: !include aktoren/esp32-lights.yaml
 #
 ###########################################################
 
@@ -53,9 +53,9 @@ esp32:
 #
 # Sensoren
 
-<<: !include aktoren/DevKitC-sensors.yaml
+<<: !include aktoren/esp32-sensors.yaml
 #
 ###########################################################
 
 # Automatitionen
-<<: !include utils/DevKitC-interval.yaml
+<<: !include utils/esp32-interval.yaml

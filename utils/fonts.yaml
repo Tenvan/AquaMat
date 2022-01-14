@@ -1,5 +1,9 @@
 font:
-  - id: systemFont
+  - id: contentFont
+    file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
+    size: 12
+    glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß
+  - id: headerFont
     file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
     size: 12
     glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß

@@ -1,0 +1,124 @@
+#############################################################
+# ST7745 Display (TFT 1.8")
+# See: https://esphome.io/components/display/st7735.html
+#############################################################
+#  VCC	Plus
+#  GND	Minus
+#  CS	Chip Select
+#  RST	Reset (RES)
+#  A0 – D/C – DC	Data Command
+#  SDA – SDI – DIN – MOSI	Data In / Datenleitung (Serial Data Line)
+#  SCK – SCK – CLK – SPI Takt	Clock Takt (Serial Clock Line)
+#  LED – BL	Hintergund Beleuchtung
+#  CE	Chip Enable
+#
+#  Nachbau: https://lutz-baer.homepage.t-online.de/wordpress/?p=1090
+#
+#  SCK	sclk	GPIO14      (D5)
+#  A0	sda	    GPIO2       (D4)
+#  SDA	mosi	GPIOGPIO13  (D7)
+#  CS	cs	    GPIO15      (D8)
+#  Reset	    rst	RST	    rst -1 (das minus weil an RST – PIN wird nicht benannt)
+#  GND	GND	GND	Minus / Masse
+#  VCC	3V3		3 Volt
+
+# Board Models:
+#  INITR_BLACKTAB
+#  INITR_GREENTAB
+#  INITR_REDTAB
+#  INITR_MINI160X80
+#  INITR_18BLACKTAB
+#  INITR_18REDTAB
+
+# Anschluss ESP8266 Motor Shield TFT ST7735
+
+#---------------------------------------------------
+# DISPLAY --> ESP
+#---------------------------------------------------
+# VCC	  --> 3V3
+# GND     --> GND
+# CS      --> D8/GPIO15   CS = Chip Select
+# RES     --> -1 (Reset)
+# A0      --> D4/GPIO2    A0/DC = Data/Command
+# SDA     --> D7/GPIO13   SDA = Serial Data or SPI MOSI
+# SCK     --> D5/GPIO14   CLK/SCL = Serial Clock or SPI SCK
+# BLK     --> VCC/NULL    BL = Hintergund Beleuchtung
+#---------------------------------------------------
+#
+# Model: INITR_BLACKTAB
+
+display:
+#  - platform: st7735
+#    id: mainDisplay
+#    model: "INITR_BLACKTAB"
+#    #    reset_pin: -1
+#    cs_pin: D8
+#    dc_pin: D0
+#    rotation: 90
+#    device_width: 128
+#    device_height: 160
+#    col_start: 0
+#    row_start: 0
+#    eight_bit_color: false
+#    update_interval: 5s
+#
+#    pages:
+#      - id: tftWelcome
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_WelcomeScreen(&it, id(contentFont));
+#
+#      - id: tftPageTime
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_TimeScreen(&it, id(contentFont));
+#
+#      - id: tftPagePumpe1
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_Pump1Screen(&it, id(contentFont));
+#
+#      - id: tftPagePumpe2
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_Pump2Screen(&it, id(contentFont));
+#
+#      - id: tftPagePumpe3
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_Pump3Screen(&it, id(contentFont));
+
+  #############################################################
+  # SDD1306 Display (OLED)
+  # See:
+  #############################################################
+#  - platform: ssd1306_i2c
+#    id: displayOled
+#    model: "SH1106 128x64"
+#    address: 0x3C
+#
+#    pages:
+#      - id: oledWelcome
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_WelcomeScreen(&it, id(contentFont));
+#
+#      - id: oledPageTime
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_TimeScreen(&it, id(contentFont));
+#
+#      - id: oledPagePumpe1
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_Pump1Screen(&it, id(contentFont));
+#
+#      - id: oledPagePumpe2
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_Pump2Screen(&it, id(contentFont));
+#
+#      - id: oledPagePumpe3
+#        lambda: |-
+#          render_display_header(&it, id(headerFont));
+#          render_Pump3Screen(&it, id(contentFont));
