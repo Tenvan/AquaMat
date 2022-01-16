@@ -4,8 +4,6 @@
 #dallas:
 #  - id: dallasWaterSensor
 #    pin: GPIO12
-
-# Individual sensors
 #sensor:
 #  - platform: dallas
 #    id: waterSensor

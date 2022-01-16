@@ -1,6 +1,66 @@
 button:
 
   - platform: template
+    name: "Pumpe 1 Kalibrierung"
+    id: pump_1_calibration
+    on_press:
+      - logger.log: "Pumpe 1 Kalibrierung"
+      - fan.turn_off: pump_1
+      - fan.turn_on:
+          id: pump_1
+          direction: FORWARD
+          speed: 100
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "Kalibrierung"
+      - delay: 10s
+      - fan.turn_off: pump_1
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: !lambda 'return {};'
+      - logger.log: "Pumpe 1 Kalibrierung fertig"
+
+  - platform: template
+    name: "Pumpe 2 Kalibrierung"
+    id: pump_2_calibration
+    on_press:
+      - logger.log: "Pumpe 2 Kalibrierung"
+      - fan.turn_off: pump_2
+      - fan.turn_on:
+          id: pump_2
+          direction: FORWARD
+          speed: 100
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "Kalibrierung"
+      - delay: 10s
+      - fan.turn_off: pump_2
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: !lambda 'return {};'
+      - logger.log: "Pumpe 2 Kalibrierung fertig"
+
+  - platform: template
+    name: "Pumpe 3 Kalibrierung"
+    id: pump_3_calibration
+    on_press:
+      - logger.log: "Pumpe 3 Kalibrierung"
+      - fan.turn_off: pump_3
+      - fan.turn_on:
+          id: pump_3
+          direction: FORWARD
+          speed: 100
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "Kalibrierung"
+      - delay: 10s
+      - fan.turn_off: pump_3
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: !lambda 'return {};'
+      - logger.log: "Pumpe 3 Kalibrierung fertig"
+
+  - platform: template
     name: "Pumpe 1 Einzeldosis"
     id: small_ammount_pump_1
     on_press:
@@ -10,8 +70,14 @@ button:
           id: pump_1
           direction: REVERSE
           speed: 80
-      - delay: 3s
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "1ml Einzeldosis Pumpe 1"
+      - delay: 2s
       - fan.turn_off: pump_1
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: !lambda 'return {};'
       - logger.log: "Pumpe 1 Einzeldosis press finished"
 
   - platform: template
@@ -24,7 +90,13 @@ button:
           id: pump_2
           direction: REVERSE
           speed: 80
-      - delay: 3s
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "1ml Einzeldosis Pumpe 2"
+      - delay: 2s
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: !lambda 'return {};'
       - fan.turn_off: pump_2
       - logger.log: "Pumpe 2 Einzeldosis press finished"
 
@@ -38,7 +110,13 @@ button:
           id: pump_3
           direction: REVERSE
           speed: 80
-      - delay: 3s
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "1ml Einzeldosis Pumpe 3"
+      - delay: 2s
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: !lambda 'return {};'
       - fan.turn_off: pump_3
       - logger.log: "Pumpe 1 Einzeldosis press finished"
 
@@ -59,10 +137,16 @@ switch:
           id: pump_1
           direction: REVERSE
           speed: 100
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "Drain - Schlauch Leerung"
 
     turn_off_action:
       - logger.log: "Pumpe 1 Drain gestoppt"
       - fan.turn_off: pump_1
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "Inaktiv"
 
   - platform: template
     name: "Drain Pump 2"
@@ -75,16 +159,21 @@ switch:
       }
 
     turn_on_action:
-      - logger.log: "Pumpe 3 Drain gestartet"
+      - logger.log: "Pumpe 2 Drain gestartet"
       - fan.turn_on:
           id: pump_2
           direction: REVERSE
           speed: 100
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "Drain - Schlauch Leerung"
 
     turn_off_action:
-      - logger.log: "Pumpe 3 Drain gestoppt"
+      - logger.log: "Pumpe 2 Drain gestoppt"
       - fan.turn_off: pump_2
-
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "Inaktiv"
 
   - platform: template
     name: "Drain Pump 3"
@@ -103,7 +192,13 @@ switch:
           id: pump_3
           direction: REVERSE
           speed: 100
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "Drain - Schlauch Leerung"
 
     turn_off_action:
       - logger.log: "Pumpe 3 Drain gestoppt"
       - fan.turn_off: pump_3
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "Inaktiv"

@@ -2,26 +2,9 @@
 # ST7745 Display (TFT 1.8")
 # See: https://esphome.io/components/display/st7735.html
 #############################################################
-#  VCC	Plus
-#  GND	Minus
-#  CS	Chip Select
-#  RST	Reset (RES)
-#  A0 – D/C – DC	Data Command
-#  SDA – SDI – DIN – MOSI	Data In / Datenleitung (Serial Data Line)
-#  SCK – SCK – CLK – SPI Takt	Clock Takt (Serial Clock Line)
-#  LED – BL	Hintergund Beleuchtung
-#  CE	Chip Enable
-
-# Board Models:
-#  INITR_BLACKTAB
-#  INITR_GREENTAB
-#  INITR_REDTAB
-#  INITR_MINI160X80
-#  INITR_18BLACKTAB
-#  INITR_18REDTAB
-
+#
 # Anschluss ESP32 Dev Board TFT ST7735
-
+#
 #---------------------------------------------------
 # DISPLAY --> ESP
 #---------------------------------------------------
@@ -34,6 +17,14 @@
 # SCK     --> P18/GPIO18          CLK/SCL = Serial Clock or SPI SCK
 # BLK     --> VCC/NULL            BL = Hintergund Beleuchtung
 #---------------------------------------------------
+#
+# Board Models:
+#  INITR_BLACKTAB
+#  INITR_GREENTAB
+#  INITR_REDTAB
+#  INITR_MINI160X80
+#  INITR_18BLACKTAB
+#  INITR_18REDTAB
 #
 # Model: INITR_BLACKTAB
 
@@ -55,28 +46,33 @@ display:
     pages:
       - id: tftWelcome
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_WelcomeScreen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_WelcomeScreen();
 
       - id: tftPageTime
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_TimeScreen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_TimeScreen();
 
       - id: tftPagePumpe1
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_Pump1Screen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump1Screen();
 
       - id: tftPagePumpe2
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_Pump2Screen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump2Screen();
 
       - id: tftPagePumpe3
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_Pump3Screen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump3Screen();
 
   #############################################################
   # SDD1306 Display (OLED)
@@ -90,25 +86,30 @@ display:
     pages:
       - id: oledWelcome
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_WelcomeScreen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_WelcomeScreen();
 
       - id: oledPageTime
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_TimeScreen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_TimeScreen();
 
       - id: oledPagePumpe1
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_Pump1Screen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump1Screen();
 
       - id: oledPagePumpe2
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_Pump2Screen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump2Screen();
 
       - id: oledPagePumpe3
         lambda: |-
-          render_display_header(&it, id(headerFont));
-          render_Pump3Screen(&it, id(contentFont));
+          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump3Screen();

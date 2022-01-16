@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
-    <generated />
+    <generated>
+      <config projectName="AquaMat" targetName="AquaMatLib" />
+    </generated>
   </component>
-  <component name="CMakeSettings">
-    <configurations />
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3600a822-a4f9-4b9a-9822-92afe518484b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/aktoren/esp32-sensors.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aktoren/esp8266-sensors.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aquamat-DevKitC.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/displays/esp32.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/inputs/DevKitC-inputs.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/esp32-interval.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/esp8266-interval.yaml" afterDir="false" />
+    <list default="true" id="c4bdc4ee-37f7-41dc-9399-f348a6040ac5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/aktoren/base-sensors.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/display-controler.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/display-controler.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AquaMat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AquaMat.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AquaMat2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/code-comments.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aktoren/buttons.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aktoren/pumps.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/pumps.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aktoren/sensors.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aktoren/esp32-sensors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/esp32-sensors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aktoren/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aquamat-DevKitC.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-DevKitC.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aquamat-base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-base.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aquamat-es32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-es32.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aquamat-es8226.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-es8226.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aquamat-es32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-esp32.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/displays/DevKitC.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/DevKitC.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/displays/esp8266-st7735.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/esp8266.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/displays/ili9341.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/displays/sdd1306.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/displays/st7735.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/spi/DevKitC-spi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/spi/DevKitC-spi.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display-controler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/util.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display-controler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/displays/esp32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/esp32.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display-controler.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display-controler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/DevKitC-interval.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/DevKitC-interval.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/esp32-interval.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/esp32-interval.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/fonts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fonts.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/interval.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,16 +44,6 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CMakeLists.txt" />
-      </list>
-    </option>
-  </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,7 +57,7 @@
     </file-type-list>
   </component>
   <component name="MacroExpansionManager">
-    <option name="directoryName" value="99ycn86c" />
+    <option name="directoryName" value="vcb89veg" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -77,16 +67,15 @@
     <option name="majorVersion" value="2021" />
     <option name="minorVersion" value="3.2" />
   </component>
-  <component name="ProjectId" id="23MqkZSFqYPNQosbcyP01T65INO" />
+  <component name="ProjectId" id="23khdIv6W1mwDpl7rK5llJkw3Kc" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
@@ -94,65 +83,30 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="code.cleanup.on.save" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/io/inputs" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/displays" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
-    <property name="structure.view.defaults.are.configured" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/io/inputs" />
-      <recent name="$PROJECT_DIR$/aktoren" />
-      <recent name="$PROJECT_DIR$/utils" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/displays" />
+      <recent name="$PROJECT_DIR$/aktoren" />
+      <recent name="$PROJECT_DIR$/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib" />
-      <recent name="$PROJECT_DIR$/io/outputs" />
-      <recent name="$PROJECT_DIR$/io/inputs" />
-      <recent name="$PROJECT_DIR$/io/spi" />
-      <recent name="$PROJECT_DIR$/io/i2c" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.DevKitC_watch_config">
+  <component name="RunManager" selected="npm.esp32_watch_config">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DevKitC_run_OTA_Host" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="DevKitC_run_OTA_Host" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="DevKitC_run_OTA_IP" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="DevKitC_run_OTA_IP" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="DevKitC_run_USB0" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="DevKitC_run_USB0" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
+    <configuration name="AquaMatLib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AquaMat" TARGET_NAME="AquaMatLib" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="AquaMat" RUN_TARGET_NAME="AquaMatLib">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration name="DevKitC_watch_compile" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -174,45 +128,63 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="clean:all" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="clean:all" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="esp32_watch_compile" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp32_watch_compile" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="esp32_watch_config" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp32_watch_config" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="npm.DevKitC_watch_config" />
+      <item itemvalue="CMake Application.AquaMatLib" />
+      <item itemvalue="npm.esp32_watch_config" />
+      <item itemvalue="npm.esp32_watch_compile" />
+      <item itemvalue="npm.clean:all" />
       <item itemvalue="npm.DevKitC_watch_compile" />
-      <item itemvalue="npm.DevKitC_run_USB0" />
-      <item itemvalue="npm.DevKitC_run_OTA_Host" />
-      <item itemvalue="npm.DevKitC_run_OTA_IP" />
+      <item itemvalue="npm.DevKitC_watch_config" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.DevKitC_watch_compile" />
         <item itemvalue="npm.DevKitC_watch_config" />
-        <item itemvalue="npm.DevKitC_run_USB0" />
-        <item itemvalue="npm.DevKitC_run_OTA_IP" />
-        <item itemvalue="npm.DevKitC_run_OTA_Host" />
+        <item itemvalue="npm.clean:all" />
+        <item itemvalue="npm.esp32_watch_compile" />
+        <item itemvalue="npm.esp32_watch_config" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3600a822-a4f9-4b9a-9822-92afe518484b" name="Changes" comment="" />
-      <created>1641554447727</created>
+      <changelist id="c4bdc4ee-37f7-41dc-9399-f348a6040ac5" name="Changes" comment="" />
+      <created>1642284077623</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1641554447727</updated>
-      <workItem from="1641554449298" duration="22000" />
-      <workItem from="1641554478519" duration="37000" />
-      <workItem from="1641555288834" duration="84000" />
-      <workItem from="1641555384543" duration="81000" />
-      <workItem from="1641555476725" duration="621000" />
-      <workItem from="1641556110979" duration="4066000" />
-      <workItem from="1641650239772" duration="10423000" />
-      <workItem from="1641661375851" duration="31742000" />
-      <workItem from="1641838953726" duration="7082000" />
-      <workItem from="1641899931989" duration="5000" />
-      <workItem from="1641915356242" duration="18605000" />
-      <workItem from="1642009629139" duration="7582000" />
-      <workItem from="1642025181491" duration="3570000" />
-      <workItem from="1642094681240" duration="14214000" />
+      <updated>1642284077623</updated>
+      <workItem from="1642284078687" duration="13909000" />
     </task>
     <servers />
   </component>
@@ -230,8 +202,15 @@
       </map>
     </option>
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/main.cpp</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

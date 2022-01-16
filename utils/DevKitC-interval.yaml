@@ -8,12 +8,12 @@ interval:
     interval: 5s
     then:
       - display.page.show_next: displayOled
-      - display.page.show_next: displayTft
+#      - display.page.show_next: displayTft
       - component.update: displayOled
-      - component.update: displayTft
+#      - component.update: displayTft
 
   - id: headerLoop
     interval: 1s
     then:
       - component.update: displayOled
-      - component.update: displayTft
+#      - component.update: displayTft

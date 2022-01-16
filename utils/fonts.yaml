@@ -1,9 +1,13 @@
 font:
-  - id: contentFont
+  - id: fontSmall
     file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
     size: 12
     glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß
-  - id: headerFont
+  - id: fontMedium
     file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
-    size: 12
+    size: 14
+    glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß
+  - id: fontLarge
+    file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
+    size: 18
     glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß

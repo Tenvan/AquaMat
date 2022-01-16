@@ -5,6 +5,7 @@ CMake*
 cmake*/
 node_modules/
 yarn.lock
+.idea/workspace.xml
 
 # Gitignore settings for ESPHome
 # This is an example and may include too much for your use-case.

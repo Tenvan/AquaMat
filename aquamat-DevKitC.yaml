@@ -16,7 +16,7 @@ esp32:
 # I2C Definitionen
 <<: !include io/i2c/DevKitC-i2c.yaml
 # SPI Definitionen
-<<: !include io/spi/DevKitC-spi.yaml
+#<<: !include io/spi/DevKitC-spi.yaml
 #
 ###########################################################
 

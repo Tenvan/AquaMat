@@ -14,7 +14,7 @@ packages:
 esphome:
   # Custom Code
   includes:
-    - src
+    - lib
 
   comment: $upper_devicename for $platform
   name: $devicename
@@ -57,3 +57,6 @@ api:
 
 # Buttons
 <<: !include aktoren/services.yaml
+
+# Sensors
+<<: !include aktoren/base-sensors.yaml

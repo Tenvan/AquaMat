@@ -5,7 +5,7 @@
 
 interval:
   - id: pageLoop
-    interval: 2s
+    interval: 3s
     then:
       - display.page.show_next: displayTft
       - display.page.show_next: displayOled
@@ -13,7 +13,7 @@ interval:
       - component.update: displayOled
 
   - id: headerLoop
-    interval: 500ms
+    interval: 1s
     then:
       - component.update: displayTft
       - component.update: displayOled
