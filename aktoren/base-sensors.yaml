@@ -6,15 +6,17 @@ text_sensor:
     id: pump1_status
     name: Pump 1 Status
     lambda: |-
-      return { };
+      return {"aus"};
+
   - platform: template
     id: pump2_status
     name: Pump 2 Status
     lambda: |-
-      return { };
+      return {"aus"};
+
   - platform: template
     id: pump3_status
     name: Pump 3 Status
     lambda: |-
-      return { };
+      return {"aus"};
 

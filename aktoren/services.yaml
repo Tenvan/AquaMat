@@ -1,23 +1,83 @@
-button:
 
+  ###############################################################
+  #
+  # Kalibrierung Dosierpumpen
+  #
+  #  Folgende Schritte werden ausgeführt,
+  #  zwischen den Schritten 10 Sekunden Pause.
+  #
+  #  - Step 1: Abgabe über 10 Sekunden bei halber Stärke
+  #  - Step 2: Abgabe 10 mal für 1 Sekunden volle Stärke (Einzeldosis)
+  #  - Step 3: Abgabe 20 mal für 0.5 Sekunden volle Stärke(halbe Einzeldosis)
+  #
+  # - Direction: FORWARD
+  # - Speed....: 50
+  # - Duration.: 10s
+  #
+  ###############################################################
+
+button:
   - platform: template
     name: "Pumpe 1 Kalibrierung"
     id: pump_1_calibration
+
     on_press:
       - logger.log: "Pumpe 1 Kalibrierung"
+
+      # Step 1
+      - logger.log: "Pumpe 1 - Step 1"
       - fan.turn_off: pump_1
       - fan.turn_on:
           id: pump_1
           direction: FORWARD
-          speed: 100
-      - text_sensor.template.publish:
-          id: pump1_status
-          state: "Kalibrierung"
+          speed: 50
       - delay: 10s
       - fan.turn_off: pump_1
-      - text_sensor.template.publish:
-          id: pump1_status
-          state: !lambda 'return {};'
+
+      - logger.log: "Pumpe 1 - Step 1 fertig - warten..."
+      - delay: 2s
+
+      # Step 2
+      - logger.log: "Pumpe 1 - Step 2"
+      - while:
+          condition:
+            lambda: |- 
+              static int counter = 0;
+              return counter++ < 10;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_1
+                direction: FORWARD
+                speed: 100
+            - delay: 1s
+            - fan.turn_off: pump_1
+            - delay: 500ms
+
+      - logger.log: "Pumpe 1 - Step 2 fertig - warten..."
+      - delay: 2s
+
+      # Step 2
+      - logger.log: "Pumpe 1 - Step 3"
+      - while:
+          condition:
+            lambda: |- 
+              static int counter = 0;
+              return counter++ < 20;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_1
+                direction: FORWARD
+                speed: 100
+            - delay: 500ms
+            - fan.turn_off: pump_1
+            - delay: 500ms
+
+      - logger.log: "Pumpe 1 - Step 3 fertig"
+
       - logger.log: "Pumpe 1 Kalibrierung fertig"
 
   - platform: template
@@ -30,14 +90,8 @@ button:
           id: pump_2
           direction: FORWARD
           speed: 100
-      - text_sensor.template.publish:
-          id: pump2_status
-          state: "Kalibrierung"
       - delay: 10s
       - fan.turn_off: pump_2
-      - text_sensor.template.publish:
-          id: pump2_status
-          state: !lambda 'return {};'
       - logger.log: "Pumpe 2 Kalibrierung fertig"
 
   - platform: template
@@ -50,15 +104,21 @@ button:
           id: pump_3
           direction: FORWARD
           speed: 100
-      - text_sensor.template.publish:
-          id: pump3_status
-          state: "Kalibrierung"
       - delay: 10s
       - fan.turn_off: pump_3
-      - text_sensor.template.publish:
-          id: pump3_status
-          state: !lambda 'return {};'
       - logger.log: "Pumpe 3 Kalibrierung fertig"
+
+  ###############################################################
+  #
+  # Einzeldosis pro Pumpe
+  #
+  # Abgabe einer Einzeldosis (ca. 1ml)
+  #
+  # - Direction: FORWARD
+  # - Speed....: 50
+  # - Duration.: 1s
+  #
+  ###############################################################
 
   - platform: template
     name: "Pumpe 1 Einzeldosis"
@@ -68,16 +128,10 @@ button:
       - fan.turn_off: pump_1
       - fan.turn_on:
           id: pump_1
-          direction: REVERSE
-          speed: 80
-      - text_sensor.template.publish:
-          id: pump1_status
-          state: "1ml Einzeldosis Pumpe 1"
-      - delay: 2s
+          direction: FORWARD
+          speed: 50
+      - delay: 1s
       - fan.turn_off: pump_1
-      - text_sensor.template.publish:
-          id: pump1_status
-          state: !lambda 'return {};'
       - logger.log: "Pumpe 1 Einzeldosis press finished"
 
   - platform: template
@@ -88,15 +142,9 @@ button:
       - fan.turn_off: pump_2
       - fan.turn_on:
           id: pump_2
-          direction: REVERSE
-          speed: 80
-      - text_sensor.template.publish:
-          id: pump2_status
-          state: "1ml Einzeldosis Pumpe 2"
-      - delay: 2s
-      - text_sensor.template.publish:
-          id: pump2_status
-          state: !lambda 'return {};'
+          direction: FORWARD
+          speed: 50
+      - delay: 1s
       - fan.turn_off: pump_2
       - logger.log: "Pumpe 2 Einzeldosis press finished"
 
@@ -108,97 +156,60 @@ button:
       - fan.turn_off: pump_3
       - fan.turn_on:
           id: pump_3
-          direction: REVERSE
-          speed: 80
-      - text_sensor.template.publish:
-          id: pump3_status
-          state: "1ml Einzeldosis Pumpe 3"
-      - delay: 2s
-      - text_sensor.template.publish:
-          id: pump3_status
-          state: !lambda 'return {};'
+          direction: FORWARD
+          speed: 50
+      - delay: 1s
       - fan.turn_off: pump_3
       - logger.log: "Pumpe 1 Einzeldosis press finished"
 
-switch:
-  - platform: template
-    name: "Drain Pump 1"
-    id: drain_pump_1
-    lambda: |-
-      if (id(pump_1).state && id(pump_1).direction == FanDirection::FAN_DIRECTION_REVERSE ) {
-        return true;
-      } else {
-        return false;
-      }
+  ##########################################################################
+  #
+  # Pumpen Drain (Schlauch leeren)
+  #
+  # Leert den Schlauch durch 30 Sekunden Rücklauf (!) in den Dosierbehälter
+  #
+  # - Direction: REVERSE
+  # - Speed....: 100
+  # - Duration.: 30s
+  #
+  ##########################################################################
 
-    turn_on_action:
+  - platform: template
+    name: "Drain Pumpe 1"
+    id: drain_pump_1
+    on_press:
       - logger.log: "Pumpe 1 Drain gestartet"
       - fan.turn_on:
           id: pump_1
           direction: REVERSE
           speed: 100
-      - text_sensor.template.publish:
-          id: pump1_status
-          state: "Drain - Schlauch Leerung"
-
-    turn_off_action:
+      - delay: 3s
       - logger.log: "Pumpe 1 Drain gestoppt"
       - fan.turn_off: pump_1
-      - text_sensor.template.publish:
-          id: pump1_status
-          state: "Inaktiv"
 
   - platform: template
-    name: "Drain Pump 2"
+    name: "Drain Pumpe 2"
     id: drain_pump_2
-    lambda: |-
-      if (id(pump_2).state && id(pump_2).direction == FanDirection::FAN_DIRECTION_REVERSE ) {
-        return true;
-      } else {
-        return false;
-      }
-
-    turn_on_action:
+    on_press:
       - logger.log: "Pumpe 2 Drain gestartet"
       - fan.turn_on:
           id: pump_2
           direction: REVERSE
           speed: 100
-      - text_sensor.template.publish:
-          id: pump2_status
-          state: "Drain - Schlauch Leerung"
-
-    turn_off_action:
+      - delay: 3s
       - logger.log: "Pumpe 2 Drain gestoppt"
       - fan.turn_off: pump_2
-      - text_sensor.template.publish:
-          id: pump2_status
-          state: "Inaktiv"
 
   - platform: template
-    name: "Drain Pump 3"
+    name: "Drain Pumpe 3"
     id: drain_pump_3
-
-    lambda: |-
-      if (id(pump_3).state && id(pump_3).direction == FanDirection::FAN_DIRECTION_REVERSE ) {
-        return true;
-      } else {
-        return false;
-      }
-
-    turn_on_action:
+    on_press:
       - logger.log: "Pumpe 3 Drain gestartet"
       - fan.turn_on:
           id: pump_3
           direction: REVERSE
           speed: 100
-      - text_sensor.template.publish:
-          id: pump3_status
-          state: "Drain - Schlauch Leerung"
-
-    turn_off_action:
+      - delay: 3s
       - logger.log: "Pumpe 3 Drain gestoppt"
       - fan.turn_off: pump_3
-      - text_sensor.template.publish:
-          id: pump3_status
-          state: "Inaktiv"
+

@@ -1,6 +1,6 @@
 #include "esphome.h"
 #include "display-controler.h"
-#include "stdio.h"
+#include <cstdio>
 
 using namespace display;
 using namespace time;

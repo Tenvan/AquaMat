@@ -5,6 +5,20 @@ fan:
     id: pump_1
     direction_output: motor_1_dir
     output: motor_1_speed
+    on_turn_on:
+      - logger.log: "Pump 1 angeschaltet"
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "ein"
+
+    on_turn_off:
+      - logger.log: "Pump 1 ausgeschaltet"
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "aus"
+
+    on_speed_set:
+      - logger.log: "Pump 1 Speed geändert"
 
   # Pumpe 2
   - platform: speed
@@ -12,6 +26,20 @@ fan:
     id: pump_2
     direction_output: motor_2_dir
     output: motor_2_speed
+    on_turn_on:
+      - logger.log: "Pump 2 angeschaltet"
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "ein"
+
+    on_turn_off:
+      - logger.log: "Pump 2 ausgeschaltet"
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "aus"
+
+    on_speed_set:
+      - logger.log: "Pump 2 Speed geändert"
 
   # Pumpe 3
   - platform: speed
@@ -19,3 +47,17 @@ fan:
     id: pump_3
     direction_output: motor_3_dir
     output: motor_3_speed
+    on_turn_on:
+      - logger.log: "Pump 3 angeschaltet"
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "ein"
+
+    on_turn_off:
+      - logger.log: "Pump 3 ausgeschaltet"
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "aus"
+
+    on_speed_set:
+      - logger.log: "Pump 3 Speed geändert"
