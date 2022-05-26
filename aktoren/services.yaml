@@ -7,8 +7,8 @@
   #  zwischen den Schritten 10 Sekunden Pause.
   #
   #  - Step 1: Abgabe über 10 Sekunden bei halber Stärke
-  #  - Step 2: Abgabe 10 mal für 1 Sekunden volle Stärke (Einzeldosis)
-  #  - Step 3: Abgabe 20 mal für 0.5 Sekunden volle Stärke(halbe Einzeldosis)
+  #  - Step 2: Abgabe 5 mal für 1 Sekunden volle Stärke (Einzeldosis)
+  #  - Step 3: Abgabe 10 mal für 0.5 Sekunden volle Stärke(halbe Einzeldosis)
   #
   # - Direction: FORWARD
   # - Speed....: 50
@@ -32,6 +32,9 @@ button:
           direction: FORWARD
           speed: 50
       - delay: 10s
+      - fan.turn_on:
+          id: pump_1
+          speed: 1
       - fan.turn_off: pump_1
 
       - logger.log: "Pumpe 1 - Step 1 fertig - warten..."
@@ -39,6 +42,30 @@ button:
 
       # Step 2
       - logger.log: "Pumpe 1 - Step 2"
+      - while:
+          condition:
+            lambda: |- 
+              static int counter = 0;
+              return counter++ < 5;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_1
+                direction: FORWARD
+                speed: 100
+            - delay: 1s
+            - fan.turn_on:
+                id: pump_1
+                speed: 1
+            - fan.turn_off: pump_1
+            - delay: 500ms
+
+      - logger.log: "Pumpe 1 - Step 2 fertig - warten..."
+      - delay: 2s
+
+      # Step 3
+      - logger.log: "Pumpe 1 - Step 3"
       - while:
           condition:
             lambda: |- 
@@ -51,28 +78,10 @@ button:
                 id: pump_1
                 direction: FORWARD
                 speed: 100
-            - delay: 1s
-            - fan.turn_off: pump_1
             - delay: 500ms
-
-      - logger.log: "Pumpe 1 - Step 2 fertig - warten..."
-      - delay: 2s
-
-      # Step 2
-      - logger.log: "Pumpe 1 - Step 3"
-      - while:
-          condition:
-            lambda: |- 
-              static int counter = 0;
-              return counter++ < 20;
-
-          then:
-            - logger.log: "Loop"
             - fan.turn_on:
                 id: pump_1
-                direction: FORWARD
-                speed: 100
-            - delay: 500ms
+                speed: 1
             - fan.turn_off: pump_1
             - delay: 500ms
 
@@ -83,29 +92,145 @@ button:
   - platform: template
     name: "Pumpe 2 Kalibrierung"
     id: pump_2_calibration
+
     on_press:
       - logger.log: "Pumpe 2 Kalibrierung"
+
+      # Step 1
+      - logger.log: "Pumpe 2 - Step 1"
       - fan.turn_off: pump_2
       - fan.turn_on:
           id: pump_2
           direction: FORWARD
-          speed: 100
+          speed: 50
       - delay: 10s
+      - fan.turn_on:
+          id: pump_2
+          speed: 1
       - fan.turn_off: pump_2
+
+      - logger.log: "Pumpe 2 - Step 1 fertig - warten..."
+      - delay: 2s
+
+      # Step 2
+      - logger.log: "Pumpe 2 - Step 2"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 5;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_2
+                direction: FORWARD
+                speed: 100
+            - delay: 1s
+            - fan.turn_on:
+                id: pump_2
+                speed: 1
+            - fan.turn_off: pump_2
+            - delay: 500ms
+
+      - logger.log: "Pumpe 2 - Step 2 fertig - warten..."
+      - delay: 2s
+
+      # Step 3
+      - logger.log: "Pumpe 2 - Step 3"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 10;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_2
+                direction: FORWARD
+                speed: 100
+            - delay: 500ms
+            - fan.turn_on:
+                id: pump_2
+                speed: 1
+            - fan.turn_off: pump_2
+            - delay: 500ms
+
+      - logger.log: "Pumpe 2 - Step 3 fertig"
+
       - logger.log: "Pumpe 2 Kalibrierung fertig"
 
   - platform: template
     name: "Pumpe 3 Kalibrierung"
     id: pump_3_calibration
+
     on_press:
       - logger.log: "Pumpe 3 Kalibrierung"
+
+      # Step 1
+      - logger.log: "Pumpe 3 - Step 1"
       - fan.turn_off: pump_3
       - fan.turn_on:
           id: pump_3
           direction: FORWARD
-          speed: 100
+          speed: 50
       - delay: 10s
+      - fan.turn_on:
+          id: pump_3
+          speed: 1
       - fan.turn_off: pump_3
+
+      - logger.log: "Pumpe 3 - Step 1 fertig - warten..."
+      - delay: 2s
+
+      # Step 2
+      - logger.log: "Pumpe 3 - Step 2"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 5;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_3
+                direction: FORWARD
+                speed: 100
+            - delay: 1s
+            - fan.turn_on:
+                id: pump_3
+                speed: 1
+            - fan.turn_off: pump_3
+            - delay: 500ms
+
+      - logger.log: "Pumpe 3 - Step 2 fertig - warten..."
+      - delay: 2s
+
+      # Step 3
+      - logger.log: "Pumpe 3 - Step 3"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 10;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_3
+                direction: FORWARD
+                speed: 100
+            - delay: 500ms
+            - fan.turn_on:
+                id: pump_3
+                speed: 1
+            - fan.turn_off: pump_3
+            - delay: 500ms
+
+      - logger.log: "Pumpe 3 - Step 3 fertig"
+
       - logger.log: "Pumpe 3 Kalibrierung fertig"
 
   ###############################################################
@@ -131,6 +256,9 @@ button:
           direction: FORWARD
           speed: 50
       - delay: 1s
+      - fan.turn_on:
+          id: pump_1
+          speed: 1
       - fan.turn_off: pump_1
       - logger.log: "Pumpe 1 Einzeldosis press finished"
 
@@ -145,6 +273,9 @@ button:
           direction: FORWARD
           speed: 50
       - delay: 1s
+      - fan.turn_on:
+          id: pump_2
+          speed: 1
       - fan.turn_off: pump_2
       - logger.log: "Pumpe 2 Einzeldosis press finished"
 
@@ -159,6 +290,9 @@ button:
           direction: FORWARD
           speed: 50
       - delay: 1s
+      - fan.turn_on:
+          id: pump_3
+          speed: 1
       - fan.turn_off: pump_3
       - logger.log: "Pumpe 1 Einzeldosis press finished"
 
@@ -183,9 +317,13 @@ button:
           id: pump_1
           direction: REVERSE
           speed: 100
-      - delay: 3s
-      - logger.log: "Pumpe 1 Drain gestoppt"
+      - delay: 5s
+      - fan.turn_on:
+          id: pump_1
+          direction: FORWARD
+          speed: 1
       - fan.turn_off: pump_1
+      - logger.log: "Pumpe 1 Drain gestoppt"
 
   - platform: template
     name: "Drain Pumpe 2"
@@ -196,9 +334,13 @@ button:
           id: pump_2
           direction: REVERSE
           speed: 100
-      - delay: 3s
-      - logger.log: "Pumpe 2 Drain gestoppt"
+      - delay: 5s
+      - fan.turn_on:
+          id: pump_2
+          direction: FORWARD
+          speed: 1
       - fan.turn_off: pump_2
+      - logger.log: "Pumpe 2 Drain gestoppt"
 
   - platform: template
     name: "Drain Pumpe 3"
@@ -209,7 +351,11 @@ button:
           id: pump_3
           direction: REVERSE
           speed: 100
-      - delay: 3s
-      - logger.log: "Pumpe 3 Drain gestoppt"
+      - delay: 5s
+      - fan.turn_on:
+          id: pump_3
+          direction: FORWARD
+          speed: 1
       - fan.turn_off: pump_3
+      - logger.log: "Pumpe 3 Drain gestoppt"
 

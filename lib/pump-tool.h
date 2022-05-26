@@ -11,10 +11,10 @@ namespace esphome {
   class PumpTool {
 
   protected:
-    FanState *pump;
+    Fan *pump;
 
   public:
-    PumpTool(FanState *pump);
+    PumpTool(Fan *pump);
 
     void calibratePump();
   };

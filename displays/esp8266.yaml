@@ -14,9 +14,9 @@
 #
 #  Nachbau: https://lutz-baer.homepage.t-online.de/wordpress/?p=1090
 #
-#  SCK	sclk	GPIO14      (D5)
 #  A0	sda	    GPIO2       (D4)
-#  SDA	mosi	GPIOGPIO13  (D7)
+#  SCK	sclk	GPIO14      (D5)
+#  SDA	mosi	GPIO4       (D7)
 #  CS	cs	    GPIO15      (D8)
 #  Reset	    rst	RST	    rst -1 (das minus weil an RST – PIN wird nicht benannt)
 #  GND	GND	GND	Minus / Masse
@@ -100,25 +100,35 @@ display:
 #    pages:
 #      - id: oledWelcome
 #        lambda: |-
-#          render_display_header(&it, id(headerFont));
-#          render_WelcomeScreen(&it, id(contentFont));
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_WelcomeScreen();
 #
 #      - id: oledPageTime
 #        lambda: |-
-#          render_display_header(&it, id(headerFont));
-#          render_TimeScreen(&it, id(contentFont));
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_TimeScreen();
 #
 #      - id: oledPagePumpe1
 #        lambda: |-
-#          render_display_header(&it, id(headerFont));
-#          render_Pump1Screen(&it, id(contentFont));
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_Pump1Screen();
 #
 #      - id: oledPagePumpe2
 #        lambda: |-
-#          render_display_header(&it, id(headerFont));
-#          render_Pump2Screen(&it, id(contentFont));
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_Pump2Screen();
 #
 #      - id: oledPagePumpe3
 #        lambda: |-
-#          render_display_header(&it, id(headerFont));
-#          render_Pump3Screen(&it, id(contentFont));
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_Pump3Screen();
+
+#image:
+#  - file: "displays/made-for-esphome-black-on-white.png"
+#    id: smallImage
+#    resize: 128x32

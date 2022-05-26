@@ -3,25 +3,31 @@ output:
   - id: motor_1_dir
     platform: gpio
     pin: GPIO26
+    inverted: true
   - id: motor_1_speed
     platform: ledc
     pin: GPIO25
+    inverted: true
 
   # Pumpen 2 Anschluss
   - id: motor_2_dir
     platform: gpio
     pin: GPIO17
+    inverted: true
   - id: motor_2_speed
     platform: ledc
     pin: GPIO16
+    inverted: true
 
   # Pumpen 3 Anschluss
   - id: motor_3_dir
     platform: gpio
     pin: GPIO27
+    inverted: true
   - id: motor_3_speed
     platform: ledc
     pin: GPIO14
+    inverted: true
 
 #  - platform: gpio
 #    id: OUT_GPIO1

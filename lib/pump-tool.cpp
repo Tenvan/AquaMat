@@ -2,11 +2,9 @@
 #include "esphome.h"
 #include "pump-tool.h"
 
-using namespace fan;
-
 namespace esphome {
 
-  PumpTool::PumpTool(FanState *pPump) {
+  PumpTool::PumpTool(Fan *pPump) {
     pump = pPump;
   }
 
@@ -27,7 +25,7 @@ namespace esphome {
       //      direction: FORWARD
       //      speed: 50
       auto call = pump->turn_on();
-      call.set_direction(FAN_DIRECTION_FORWARD);
+      call.set_direction(fan::FanDirection::FORWARD);
       call.set_speed(50);
       call.perform();
     }

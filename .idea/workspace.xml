@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="AquaMat" targetName="AquaMatLib" />
     </generated>
@@ -12,14 +15,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4bdc4ee-37f7-41dc-9399-f348a6040ac5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aktoren/base-sensors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/base-sensors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aktoren/esp32-sensors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/esp32-sensors.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aktoren/pumps.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/pumps.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aktoren/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aquamat-base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-base.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/display-controler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lib/display-controler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pump-tool.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/util.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pump-tool.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aquamat-es8226.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-esp8266.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aquamat-esp32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-esp32.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cnc/BigCase.nc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cnc/BigCase_CaseCalibration.nc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cnc/BigCase_Display.nc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cnc/BigCase_LEDs.nc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cnc/BigCase_Logog.nc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cnc/BigCase_Pumps.nc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/displays/esp32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/esp32.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/displays/esp8266.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/esp8266.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/outputs/esp32-outputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/outputs/esp32-outputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/outputs/esp8266-outputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/outputs/esp8266-outputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pump-tool.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pump-tool.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pump-tool.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pump-tool.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/esp32-interval.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/esp32-interval.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/esp8266-interval.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/esp8266-interval.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wifi/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/wifi/secrets.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wifi/wifi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/wifi/wifi.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +50,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -58,18 +80,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="cf.first.check.clang-format" value="false" />
-    <property name="cidr.known.project.marker" value="true" />
-    <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/displays" />
-    <property name="nodejs_package_manager_path" value="yarn" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/displays" />
@@ -81,37 +101,27 @@
       <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.esp32_watch_config">
+  <component name="RunManager" selected="CMake Application.AquaMatLib">
     <configuration name="AquaMatLib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AquaMat" TARGET_NAME="AquaMatLib" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="AquaMat" RUN_TARGET_NAME="AquaMatLib">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DevKitC_watch_compile" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="esp32_run" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="DevKitC_watch_compile" />
+        <script value="esp32_run" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="DevKitC_watch_config" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="esp32_run_USB0" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="DevKitC_watch_config" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="clean:all" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="clean:all" />
+        <script value="esp32_run_USB0" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -137,21 +147,31 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="esp8266_run_USB0" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="esp8266_run_USB0" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="CMake Application.AquaMatLib" />
+      <item itemvalue="npm.esp32_run" />
       <item itemvalue="npm.esp32_watch_config" />
       <item itemvalue="npm.esp32_watch_compile" />
-      <item itemvalue="npm.clean:all" />
-      <item itemvalue="npm.DevKitC_watch_compile" />
-      <item itemvalue="npm.DevKitC_watch_config" />
+      <item itemvalue="npm.esp8266_run_USB0" />
+      <item itemvalue="npm.esp32_run_USB0" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.DevKitC_watch_compile" />
-        <item itemvalue="npm.DevKitC_watch_config" />
-        <item itemvalue="npm.clean:all" />
+        <item itemvalue="npm.esp32_run_USB0" />
         <item itemvalue="npm.esp32_watch_compile" />
+        <item itemvalue="npm.esp32_run" />
         <item itemvalue="npm.esp32_watch_config" />
+        <item itemvalue="npm.esp8266_run_USB0" />
       </list>
     </recent_temporary>
   </component>
@@ -166,6 +186,17 @@
       <workItem from="1642284078687" duration="13976000" />
       <workItem from="1642423540001" duration="6000" />
       <workItem from="1642541692082" duration="7650000" />
+      <workItem from="1642807369267" duration="264000" />
+      <workItem from="1642855819799" duration="25000" />
+      <workItem from="1648371564862" duration="1174000" />
+      <workItem from="1648373898433" duration="3806000" />
+      <workItem from="1648377850255" duration="1000" />
+      <workItem from="1648378478988" duration="8276000" />
+      <workItem from="1648973087049" duration="4972000" />
+      <workItem from="1649508010055" duration="3176000" />
+      <workItem from="1653559252872" duration="149000" />
+      <workItem from="1653559409035" duration="2161000" />
+      <workItem from="1653562185405" duration="7176000" />
     </task>
     <servers />
   </component>
@@ -193,5 +224,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

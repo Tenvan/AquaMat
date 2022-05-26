@@ -5,7 +5,31 @@ packages:
   device_base: !include aquamat-base.yaml
 
 esphome:
-  comment: $upper_devicename for $platform (mit sdd1306 Display)
+  comment: $upper_devicename for $platform
+
+  on_boot:
+    priority: -100
+    then:
+      - logger.log: "AquaMat gebootet"
+      - logger.log: "Pumpen abschalten"
+      - fan.turn_on:
+          id: pump_1
+          direction: FORWARD
+          speed: 1
+      - fan.turn_off: pump_1
+      - fan.turn_on:
+          id: pump_2
+          direction: FORWARD
+          speed: 2
+      - fan.turn_off: pump_2
+      - fan.turn_on:
+          id: pump_1
+          direction: FORWARD
+          speed: 1
+      - fan.turn_off: pump_3
+#      - lambda: id(pump_1).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
+#      - lambda: id(pump_2).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
+#      - lambda: id(pump_3).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
 
 esp32:
   board: esp32dev
@@ -16,7 +40,7 @@ esp32:
 # I2C Definitionen
 <<: !include io/i2c/esp32-i2c.yaml
 # SPI Definitionen
-<<: !include io/spi/esp32-spi.yaml
+#<<: !include io/spi/esp32-spi.yaml
 #
 ###########################################################
 
@@ -44,7 +68,7 @@ esp32:
 #
 # LEDs
 #<<: !include io/esp32-lights.yaml
-<<: !include aktoren/esp32-lights.yaml
+#<<: !include aktoren/esp32-lights.yaml
 #
 ###########################################################
 

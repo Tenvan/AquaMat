@@ -24,15 +24,6 @@ esphome:
     name: "aqua.mat"
     version: "1.0.0"
 
-  on_boot:
-    priority: -100
-    then:
-      - logger.log: "AquaMat gebootet"
-      - logger.log: "Pumpen abschalten"
-      - fan.turn_off: pump_1
-      - fan.turn_off: pump_2
-      - fan.turn_off: pump_3
-
 logger:
 
 # Enable Home Assistant API

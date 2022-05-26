@@ -29,50 +29,50 @@
 # Model: INITR_BLACKTAB
 
 display:
-  - platform: st7735
-    id: displayTft
-    model: "INITR_BLACKTAB"
-    reset_pin: GPIO32
-    cs_pin: GPIO5
-    dc_pin: GPIO17
-    rotation: 270
-    device_width: 128
-    device_height: 160
-    col_start: 0
-    row_start: 0
-    eight_bit_color: true
-    update_interval: 5s
-
-    pages:
-      - id: tftWelcome
-        lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
-          comp->render_display_header();
-          comp->render_WelcomeScreen();
-
-      - id: tftPageTime
-        lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
-          comp->render_display_header();
-          comp->render_TimeScreen();
-
-      - id: tftPagePumpe1
-        lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
-          comp->render_display_header();
-          comp->render_Pump1Screen();
-
-      - id: tftPagePumpe2
-        lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
-          comp->render_display_header();
-          comp->render_Pump2Screen();
-
-      - id: tftPagePumpe3
-        lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
-          comp->render_display_header();
-          comp->render_Pump3Screen();
+#  - platform: st7735
+#    id: displayTft
+#    model: "INITR_BLACKTAB"
+#    reset_pin: GPIO32
+#    cs_pin: GPIO5
+#    dc_pin: GPIO17
+#    rotation: 270
+#    device_width: 128
+#    device_height: 160
+#    col_start: 0
+#    row_start: 0
+#    eight_bit_color: true
+#    update_interval: 5s
+#
+#    pages:
+#      - id: tftWelcome
+#        lambda: |-
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_WelcomeScreen();
+#
+#      - id: tftPageTime
+#        lambda: |-
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_TimeScreen();
+#
+#      - id: tftPagePumpe1
+#        lambda: |-
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_Pump1Screen();
+#
+#      - id: tftPagePumpe2
+#        lambda: |-
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_Pump2Screen();
+#
+#      - id: tftPagePumpe3
+#        lambda: |-
+#          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+#          comp->render_display_header();
+#          comp->render_Pump3Screen();
 
   #############################################################
   # SDD1306 Display (OLED)
@@ -86,30 +86,36 @@ display:
     pages:
       - id: oledWelcome
         lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
           comp->render_display_header();
           comp->render_WelcomeScreen();
 
       - id: oledPageTime
         lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
           comp->render_display_header();
           comp->render_TimeScreen();
 
       - id: oledPagePumpe1
         lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
           comp->render_display_header();
           comp->render_Pump1Screen();
 
       - id: oledPagePumpe2
         lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
           comp->render_display_header();
           comp->render_Pump2Screen();
 
       - id: oledPagePumpe3
         lambda: |-
-          auto comp = new DisplayComponent(&it, id(fontSmall), id(fontMedium), id(fontLarge));
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
           comp->render_display_header();
           comp->render_Pump3Screen();
+
+image:
+  - file: "displays/made-for-esphome-black-on-white.png"
+    id: smallImage
+    resize: 128x32
+

@@ -2,6 +2,7 @@ fan:
   # Pumpe 1
   - platform: speed
     name: "Dosierpumpe 1"
+    restore_mode: ALWAYS_OFF
     id: pump_1
     direction_output: motor_1_dir
     output: motor_1_speed
@@ -19,11 +20,15 @@ fan:
 
     on_speed_set:
       - logger.log: "Pump 1 Speed geändert"
+      - sensor.template.publish:
+          id: pump1_speed
+          state: !lambda 'return id(pump_1).speed;'
 
   # Pumpe 2
   - platform: speed
     name: "Dosierpumpe 2"
     id: pump_2
+    restore_mode: ALWAYS_OFF
     direction_output: motor_2_dir
     output: motor_2_speed
     on_turn_on:
@@ -40,11 +45,15 @@ fan:
 
     on_speed_set:
       - logger.log: "Pump 2 Speed geändert"
+      - sensor.template.publish:
+          id: pump2_speed
+          state: !lambda 'return id(pump_2).speed;'
 
   # Pumpe 3
   - platform: speed
     name: "Dosierpumpe 3"
     id: pump_3
+    restore_mode: ALWAYS_OFF
     direction_output: motor_3_dir
     output: motor_3_speed
     on_turn_on:
@@ -61,3 +70,6 @@ fan:
 
     on_speed_set:
       - logger.log: "Pump 3 Speed geändert"
+      - sensor.template.publish:
+          id: pump3_speed
+          state: !lambda 'return id(pump_3).speed;'

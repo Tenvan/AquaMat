@@ -54,7 +54,7 @@ output:
   # Pumpen 2 Anschluss
   - id: motor_2_dir
     platform: gpio
-    pin: D4
+    pin: D5
   - id: motor_2_speed
     platform: esp8266_pwm
     pin: D1
