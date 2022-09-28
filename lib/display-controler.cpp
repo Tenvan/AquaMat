@@ -110,7 +110,7 @@ namespace esphome {
   }
 
   void DisplayComponent::render_WelcomeScreen() {
-    display->image(0, 0, image);
+    display->image(5, headerLineHeight + 5, image);
   }
 
   void DisplayComponent::render_NetworkScreen() {

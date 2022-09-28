@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "esphome-ts": "^3.3.0",
-    "rimraf": "^3.0.2",
     "watch-files": "^1.1.0"
   }
 }

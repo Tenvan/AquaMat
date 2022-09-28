@@ -10,3 +10,25 @@ time:
     on_time_sync:
       then:
         - logger.log: "Systemuhr synchronisiert"
+
+  - id: sntp_time
+    platform: sntp
+
+    on_time:
+      # Every 5 minutes
+      - seconds: /10
+        then:
+          - button.press: small_ammount_pump_1
+
+      # Cron syntax, trigger every 5 minutes
+      - cron: '/10 * * * * *'
+        then:
+          - button.press: small_ammount_pump_2
+
+      # Every morning on weekdays
+      - seconds: 0
+        minutes: 30
+        hours: 7
+        days_of_week: MON-FRI
+        then:
+          - button.press: small_ammount_pump_3

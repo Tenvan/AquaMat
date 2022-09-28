@@ -1,12 +1,12 @@
 # Definition der Sensoren
 
 # Base Sensors for all AquaMats
-#text_sensor:
-#  - platform: template
-#    id: pump1_status
-#    name: Pump 1 Status
-#    lambda: |-
-#      return {"aus"};
+# text_sensor:
+# - platform: template
+# id: pump1_status
+# name: Pump 1 Status
+# lambda: |-
+#     return {"aus"};
 #
 #  - platform: template
 #    id: pump2_status

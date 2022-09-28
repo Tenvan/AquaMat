@@ -15,32 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4bdc4ee-37f7-41dc-9399-f348a6040ac5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aktoren/base-sensors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/base-sensors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aktoren/esp32-sensors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/esp32-sensors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aktoren/pumps.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/pumps.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aktoren/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aktoren/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aquamat-base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-base.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aquamat-es8226.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-esp8266.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aquamat-esp32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/aquamat-esp32.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnc/BigCase.nc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnc/BigCase_CaseCalibration.nc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnc/BigCase_Display.nc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnc/BigCase_LEDs.nc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnc/BigCase_Logog.nc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnc/BigCase_Pumps.nc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/displays/esp32.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/esp32.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/displays/esp8266.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/displays/esp8266.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/outputs/esp32-outputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/outputs/esp32-outputs.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/outputs/esp8266-outputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/io/outputs/esp8266-outputs.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pump-tool.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pump-tool.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pump-tool.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pump-tool.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/esp32-interval.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/esp32-interval.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/esp8266-interval.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/esp8266-interval.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wifi/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/wifi/secrets.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wifi/wifi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/wifi/wifi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/time.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/time.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +79,11 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.AquaMatLib">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AquaMatLib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AquaMat" TARGET_NAME="AquaMatLib" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="AquaMat" RUN_TARGET_NAME="AquaMatLib">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -168,9 +150,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.esp32_run_USB0" />
+        <item itemvalue="npm.esp32_watch_config" />
         <item itemvalue="npm.esp32_watch_compile" />
         <item itemvalue="npm.esp32_run" />
-        <item itemvalue="npm.esp32_watch_config" />
         <item itemvalue="npm.esp8266_run_USB0" />
       </list>
     </recent_temporary>
@@ -196,7 +178,9 @@
       <workItem from="1649508010055" duration="3176000" />
       <workItem from="1653559252872" duration="149000" />
       <workItem from="1653559409035" duration="2161000" />
-      <workItem from="1653562185405" duration="7176000" />
+      <workItem from="1653562185405" duration="7620000" />
+      <workItem from="1653826468000" duration="2238000" />
+      <workItem from="1656791835277" duration="173000" />
     </task>
     <servers />
   </component>

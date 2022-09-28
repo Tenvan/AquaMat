@@ -1,11 +1,29 @@
 substitutions:
+  devicename: aquamat
+  upper_devicename: AquaMat
   platform: esp32
 
 packages:
-  device_base: !include aquamat-base.yaml
+  # device_base: !include aquamat-base.yaml
+  # Wifi Definition
+  wifi: !include wifi/wifi.yaml
+  # OTA Definition
+  ota: !include ota/ota.yaml
+  # MQTT Definition
+  # mqtt: !include mqtt/mqtt.yaml
 
 esphome:
+    # Custom Code
+  includes:
+    - lib
+
   comment: $upper_devicename for $platform
+  name: $devicename
+  name_add_mac_suffix: true
+
+  project:
+    name: "aqua.mat"
+    version: "1.1.0"
 
   on_boot:
     priority: -100
@@ -20,66 +38,878 @@ esphome:
       - fan.turn_on:
           id: pump_2
           direction: FORWARD
-          speed: 2
+          speed: 1
       - fan.turn_off: pump_2
       - fan.turn_on:
-          id: pump_1
+          id: pump_3
           direction: FORWARD
           speed: 1
       - fan.turn_off: pump_3
-#      - lambda: id(pump_1).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
-#      - lambda: id(pump_2).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
-#      - lambda: id(pump_3).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
+    #      - lambda: id(pump_1).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
+    #      - lambda: id(pump_2).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
+    #      - lambda: id(pump_3).turn_off().set_speed(0).set_direction(fan::FanDirection::FORWARD).perform();
+
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "0f56927cab6822b10952ae56aa1a1530"
 
 esp32:
   board: esp32dev
 
+#############################################################
+#
+# Globale Variablen und andere Definitionen
+#
+#############################################################
+
+#############################################################
+# Farben
+# Diverse Farbdefinitionen
+#############################################################
+color:
+  - id: COLOR_RED
+    red: 100%
+    green: 0%
+    blue: 0%
+  - id: COLOR_GREEN
+    red: 0%
+    green: 100%
+    blue: 0%
+  - id: COLOR_BLUE
+    red: 0%
+    green: 0%
+    blue: 100%
+  - id: COLOR_YELLOW
+    red: 95%
+    green: 95%
+    blue: 5%
+  - id: COLOR_ORANGE
+    red: 95%
+    green: 60%
+    blue: 3%
+
+#############################################################
+# Pumpen Definition
+#############################################################
+fan:
+  # Pumpe 1
+  - platform: speed
+    name: "Dosierpumpe 1"
+    restore_mode: ALWAYS_OFF
+    id: pump_1
+    direction_output: motor_1_dir
+    output: motor_1_speed
+    on_turn_on:
+      - logger.log: "Pump 1 angeschaltet"
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "ein"
+
+    on_turn_off:
+      - logger.log: "Pump 1 ausgeschaltet"
+      - text_sensor.template.publish:
+          id: pump1_status
+          state: "aus"
+
+    on_speed_set:
+      - logger.log: "Pump 1 Speed geändert"
+      - sensor.template.publish:
+          id: pump1_speed
+          state: !lambda 'return id(pump_1).speed;'
+
+  # Pumpe 2
+  - platform: speed
+    name: "Dosierpumpe 2"
+    id: pump_2
+    restore_mode: ALWAYS_OFF
+    direction_output: motor_2_dir
+    output: motor_2_speed
+    on_turn_on:
+      - logger.log: "Pump 2 angeschaltet"
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "ein"
+
+    on_turn_off:
+      - logger.log: "Pump 2 ausgeschaltet"
+      - text_sensor.template.publish:
+          id: pump2_status
+          state: "aus"
+
+    on_speed_set:
+      - logger.log: "Pump 2 Speed geändert"
+      - sensor.template.publish:
+          id: pump2_speed
+          state: !lambda 'return id(pump_2).speed;'
+
+  # Pumpe 3
+  - platform: speed
+    name: "Dosierpumpe 3"
+    id: pump_3
+    restore_mode: ALWAYS_OFF
+    direction_output: motor_3_dir
+    output: motor_3_speed
+    on_turn_on:
+      - logger.log: "Pump 3 angeschaltet"
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "ein"
+
+    on_turn_off:
+      - logger.log: "Pump 3 ausgeschaltet"
+      - text_sensor.template.publish:
+          id: pump3_status
+          state: "aus"
+
+    on_speed_set:
+      - logger.log: "Pump 3 Speed geändert"
+      - sensor.template.publish:
+          id: pump3_speed
+          state: !lambda 'return id(pump_3).speed;'
+
+
+#############################################################
+# Buttons
+#############################################################
+button:
+  ###############################################################
+  #
+  # Kalibrierung Dosierpumpen
+  #
+  #  Folgende Schritte werden ausgeführt,
+  #  zwischen den Schritten 10 Sekunden Pause.
+  #
+  #  - Step 1: Abgabe über 10 Sekunden bei halber Stärke
+  #  - Step 2: Abgabe 5 mal für 1 Sekunden volle Stärke (Einzeldosis)
+  #  - Step 3: Abgabe 10 mal für 0.5 Sekunden volle Stärke(halbe Einzeldosis)
+  #
+  # - Direction: FORWARD
+  # - Speed....: 50
+  # - Duration.: 10s
+  #
+  ###############################################################
+  - platform: template
+    name: "Pumpe 1 Kalibrierung"
+    id: pump_1_calibration
+
+    on_press:
+      - logger.log: "Pumpe 1 Kalibrierung"
+
+      # Step 1
+      - logger.log: "Pumpe 1 - Step 1"
+      - fan.turn_off: pump_1
+      - fan.turn_on:
+          id: pump_1
+          direction: FORWARD
+          speed: 50
+      - delay: 10s
+      - fan.turn_on:
+          id: pump_1
+          speed: 1
+      - fan.turn_off: pump_1
+
+      - logger.log: "Pumpe 1 - Step 1 fertig - warten..."
+      - delay: 2s
+
+      # Step 2
+      - logger.log: "Pumpe 1 - Step 2"
+      - while:
+          condition:
+            lambda: |- 
+              static int counter = 0;
+              return counter++ < 5;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_1
+                direction: FORWARD
+                speed: 100
+            - delay: 1s
+            - fan.turn_on:
+                id: pump_1
+                speed: 1
+            - fan.turn_off: pump_1
+            - delay: 500ms
+
+      - logger.log: "Pumpe 1 - Step 2 fertig - warten..."
+      - delay: 2s
+
+      # Step 3
+      - logger.log: "Pumpe 1 - Step 3"
+      - while:
+          condition:
+            lambda: |- 
+              static int counter = 0;
+              return counter++ < 10;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_1
+                direction: FORWARD
+                speed: 100
+            - delay: 500ms
+            - fan.turn_on:
+                id: pump_1
+                speed: 1
+            - fan.turn_off: pump_1
+            - delay: 500ms
+
+      - logger.log: "Pumpe 1 - Step 3 fertig"
+
+      - logger.log: "Pumpe 1 Kalibrierung fertig"
+
+  - platform: template
+    name: "Pumpe 2 Kalibrierung"
+    id: pump_2_calibration
+
+    on_press:
+      - logger.log: "Pumpe 2 Kalibrierung"
+
+      # Step 1
+      - logger.log: "Pumpe 2 - Step 1"
+      - fan.turn_off: pump_2
+      - fan.turn_on:
+          id: pump_2
+          direction: FORWARD
+          speed: 50
+      - delay: 10s
+      - fan.turn_on:
+          id: pump_2
+          speed: 1
+      - fan.turn_off: pump_2
+
+      - logger.log: "Pumpe 2 - Step 1 fertig - warten..."
+      - delay: 2s
+
+      # Step 2
+      - logger.log: "Pumpe 2 - Step 2"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 5;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_2
+                direction: FORWARD
+                speed: 100
+            - delay: 1s
+            - fan.turn_on:
+                id: pump_2
+                speed: 1
+            - fan.turn_off: pump_2
+            - delay: 500ms
+
+      - logger.log: "Pumpe 2 - Step 2 fertig - warten..."
+      - delay: 2s
+
+      # Step 3
+      - logger.log: "Pumpe 2 - Step 3"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 10;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_2
+                direction: FORWARD
+                speed: 100
+            - delay: 500ms
+            - fan.turn_on:
+                id: pump_2
+                speed: 1
+            - fan.turn_off: pump_2
+            - delay: 500ms
+
+      - logger.log: "Pumpe 2 - Step 3 fertig"
+
+      - logger.log: "Pumpe 2 Kalibrierung fertig"
+
+  - platform: template
+    name: "Pumpe 3 Kalibrierung"
+    id: pump_3_calibration
+
+    on_press:
+      - logger.log: "Pumpe 3 Kalibrierung"
+
+      # Step 1
+      - logger.log: "Pumpe 3 - Step 1"
+      - fan.turn_off: pump_3
+      - fan.turn_on:
+          id: pump_3
+          direction: FORWARD
+          speed: 50
+      - delay: 10s
+      - fan.turn_on:
+          id: pump_3
+          speed: 1
+      - fan.turn_off: pump_3
+
+      - logger.log: "Pumpe 3 - Step 1 fertig - warten..."
+      - delay: 2s
+
+      # Step 2
+      - logger.log: "Pumpe 3 - Step 2"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 5;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_3
+                direction: FORWARD
+                speed: 100
+            - delay: 1s
+            - fan.turn_on:
+                id: pump_3
+                speed: 1
+            - fan.turn_off: pump_3
+            - delay: 500ms
+
+      - logger.log: "Pumpe 3 - Step 2 fertig - warten..."
+      - delay: 2s
+
+      # Step 3
+      - logger.log: "Pumpe 3 - Step 3"
+      - while:
+          condition:
+            lambda: |-
+              static int counter = 0;
+              return counter++ < 10;
+
+          then:
+            - logger.log: "Loop"
+            - fan.turn_on:
+                id: pump_3
+                direction: FORWARD
+                speed: 100
+            - delay: 500ms
+            - fan.turn_on:
+                id: pump_3
+                speed: 1
+            - fan.turn_off: pump_3
+            - delay: 500ms
+
+      - logger.log: "Pumpe 3 - Step 3 fertig"
+
+      - logger.log: "Pumpe 3 Kalibrierung fertig"
+
+  ###############################################################
+  #
+  # Einzeldosis pro Pumpe
+  #
+  # Abgabe einer Einzeldosis (ca. 1ml)
+  #
+  # - Direction: FORWARD
+  # - Speed....: 50
+  # - Duration.: 1s
+  #
+  ###############################################################
+
+  - platform: template
+    name: "Pumpe 1 Einzeldosis"
+    id: small_ammount_pump_1
+    on_press:
+      - logger.log: "Pumpe 1 Einzeldosis pressed"
+      - fan.turn_off: pump_1
+      - fan.turn_on:
+          id: pump_1
+          direction: FORWARD
+          speed: 50
+      - delay: 1s
+      - fan.turn_on:
+          id: pump_1
+          speed: 1
+      - fan.turn_off: pump_1
+      - logger.log: "Pumpe 1 Einzeldosis press finished"
+
+  - platform: template
+    name: "Pumpe 2 Einzeldosis"
+    id: small_ammount_pump_2
+    on_press:
+      - logger.log: "Pumpe 2 Einzeldosis pressed"
+      - fan.turn_off: pump_2
+      - fan.turn_on:
+          id: pump_2
+          direction: FORWARD
+          speed: 50
+      - delay: 1s
+      - fan.turn_on:
+          id: pump_2
+          speed: 1
+      - fan.turn_off: pump_2
+      - logger.log: "Pumpe 2 Einzeldosis press finished"
+
+  - platform: template
+    name: "Pumpe 3 Einzeldosis"
+    id: small_ammount_pump_3
+    on_press:
+      - logger.log: "Pumpe 3 Einzeldosis pressed"
+      - fan.turn_off: pump_3
+      - fan.turn_on:
+          id: pump_3
+          direction: FORWARD
+          speed: 50
+      - delay: 1s
+      - fan.turn_on:
+          id: pump_3
+          speed: 1
+      - fan.turn_off: pump_3
+      - logger.log: "Pumpe 1 Einzeldosis press finished"
+
+  ##########################################################################
+  #
+  # Pumpen Drain (Schlauch leeren)
+  #
+  # Leert den Schlauch durch 30 Sekunden Rücklauf (!) in den Dosierbehälter
+  #
+  # - Direction: REVERSE
+  # - Speed....: 100
+  # - Duration.: 30s
+  #
+  ##########################################################################
+
+  - platform: template
+    name: "Drain Pumpe 1"
+    id: drain_pump_1
+    on_press:
+      - logger.log: "Pumpe 1 Drain gestartet"
+      - fan.turn_on:
+          id: pump_1
+          direction: REVERSE
+          speed: "1"
+      - delay: 5s
+      - fan.turn_on:
+          id: pump_1
+          direction: FORWARD
+          speed: "1"
+      - fan.turn_off: pump_1
+      - logger.log: "Pumpe 1 Drain gestoppt"
+
+  - platform: template
+    name: "Drain Pumpe 2"
+    id: drain_pump_2
+    on_press:
+      - logger.log: "Pumpe 2 Drain gestartet"
+      - fan.turn_on:
+          id: pump_2
+          direction: REVERSE
+          speed: 100
+      - delay: 5s
+      - fan.turn_on:
+          id: pump_2
+          direction: FORWARD
+          speed: 1
+      - fan.turn_off: pump_2
+      - logger.log: "Pumpe 2 Drain gestoppt"
+
+  - platform: template
+    name: "Drain Pumpe 3"
+    id: drain_pump_3
+    on_press:
+      - logger.log: "Pumpe 3 Drain gestartet"
+      - fan.turn_on:
+          id: pump_3
+          direction: REVERSE
+          speed: 100
+      - delay: 5s
+      - fan.turn_on:
+          id: pump_3
+          direction: FORWARD
+          speed: 1
+      - fan.turn_off: pump_3
+      - logger.log: "Pumpe 3 Drain gestoppt"
+
+#############################################################
+# Definition der Sensoren
+#############################################################
+  # Base Sensors for all AquaMats
+  # text_sensor:
+  # - platform: template
+  # id: pump1_status
+  # name: Pump 1 Status
+  # lambda: |-
+  #     return {"aus"};
+  #
+  #  - platform: template
+  #    id: pump2_status
+  #    name: Pump 2 Status
+  #    lambda: |-
+  #      return {"aus"};
+  #
+  #  - platform: template
+  #    id: pump3_status
+  #    name: Pump 3 Status
+  #    lambda: |-
+  #      return {"aus"};
+  #
+  #sensor:
+  #  - platform: template
+  #    id: pump1_speed
+  #    name: Pump 1 Speed
+  #    lambda: |-
+  #      return id(pump_1).speed;
+  #
+  #  - platform: template
+  #    id: pump2_speed
+  #    name: Pump 2 Speed
+  #    lambda: |-
+  #      return id(pump_2).speed;
+  #
+  #  - platform: template
+  #    id: pump3_speed
+  #    name: Pump 3 Speed
+  #    lambda: |-
+  #      return id(pump_3).speed;
+
+###########################################################
+#
+# Display Requirements
+#
+###########################################################
+
 ###########################################################
 # IO Controler
-#
-# I2C Definitionen
-<<: !include io/i2c/esp32-i2c.yaml
-# SPI Definitionen
-#<<: !include io/spi/esp32-spi.yaml
-#
 ###########################################################
+i2c:
+  # I2C Definitionen
+  sda: SDA
+  scl: SCL
+# spi:
+#   # SPI Definitionen
+#   clk_pin: SCK
+#   mosi_pin: MOSI
+#   miso_pin: MISO
 
 ###########################################################
-# Display Definitionen
-#
 # Font Definitionen
-<<: !include utils/fonts.yaml
+###########################################################
+font:
+  - id: fontSmall
+    file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
+    size: 12
+    glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß
+  - id: fontMedium
+    file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
+    size: 14
+    glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß
+  - id: fontLarge
+    file: "/usr/share/fonts/noto/NotoSansDisplay-Regular.ttf"
+    size: 18
+    glyphs: ~*!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ abcdefghijklmnopqrstuvwxyzäöüß
 #
 
+###########################################################
 # Display Driver
-<<: !include displays/esp32.yaml
-#
 ###########################################################
+display:
+  - platform: ssd1306_i2c
+    #############################################################
+    # SDD1306 Display (OLED)
+    # See:
+    #############################################################
+    id: displayOled
+    model: "SH1106 128x64"
+    address: 0x3C
+
+    pages:
+      - id: oledWelcome
+        lambda: |-
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_WelcomeScreen();
+
+      - id: oledPageTime
+        lambda: |-
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_TimeScreen();
+
+      - id: oledPagePumpe1
+        lambda: |-
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump1Screen();
+
+      - id: oledPagePumpe2
+        lambda: |-
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump2Screen();
+
+      - id: oledPagePumpe3
+        lambda: |-
+          auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+          comp->render_display_header();
+          comp->render_Pump3Screen();
+
+  # - platform: st7735
+  #   #############################################################
+  #   # ST7745 Display (TFT 1.8")
+  #   # See: https://esphome.io/components/display/st7735.html
+  #   #############################################################
+  #   #
+  #   # Anschluss ESP32 Dev Board TFT ST7735
+  #   #
+  #   #---------------------------------------------------
+  #   # DISPLAY --> ESP
+  #   #--------------------------------------------------- 
+  #   # VCC     --> 3.V.3.
+  #   # GND     --> GND
+  #   # CS      --> * P5/GPI5/VSPI_CS0  CS = Chip Select
+  #   # RES     --> -1 (Reset)
+  #   # A0      --> * P4/GPIO4          A0/DC = Data/Command
+  #   # SDA     --> P23/GPIO23          SDA = Serial Data or SPI MOSI
+  #   # SCK     --> P18/GPIO18          CLK/SCL = Serial Clock or SPI SCK
+  #   # BLK     --> VCC/NULL            BL = Hintergund Beleuchtung
+  #   #---------------------------------------------------
+  #   #
+  #   # Board Models:
+  #   #  INITR_BLACKTAB
+  #   #  INITR_GREENTAB
+  #   #  INITR_REDTAB
+  #   #  INITR_MINI160X80
+  #   #  INITR_18BLACKTAB
+  #   #  INITR_18REDTAB
+  #   #
+  #   # Model: INITR_BLACKTAB
+  #   id: displayTft
+  #   model: "INITR_BLACKTAB"
+  #   reset_pin: GPIO32
+  #   cs_pin: GPIO5
+  #   dc_pin: GPIO17
+  #   rotation: 270
+  #   device_width: 128
+  #   device_height: 160
+  #   col_start: 0
+  #   row_start: 0
+  #   eight_bit_color: true
+  #   update_interval: 5s
+
+  #   pages:
+  #     - id: tftWelcome
+  #       lambda: |-
+  #         auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+  #         comp->render_display_header();
+  #         comp->render_WelcomeScreen();
+
+  #     - id: tftPageTime
+  #       lambda: |-
+  #         auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+  #         comp->render_display_header();
+  #         comp->render_TimeScreen();
+
+  #     - id: tftPagePumpe1
+  #       lambda: |-
+  #         auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+  #         comp->render_display_header();
+  #         comp->render_Pump1Screen();
+
+  #     - id: tftPagePumpe2
+  #       lambda: |-
+  #         auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+  #         comp->render_display_header();
+  #         comp->render_Pump2Screen();
+
+  #     - id: tftPagePumpe3
+  #       lambda: |-
+  #         auto comp = new DisplayComponent(&it, id(smallImage), id(fontSmall), id(fontMedium), id(fontLarge));
+  #         comp->render_display_header();
+  #         comp->render_Pump3Screen();
+
+image:
+  - file: "displays/made-for-esphome-black-on-white.png"
+    id: smallImage
+    resize: 128x32
 
 ###########################################################
+#
 # Pin Belegung
 #
-# Input Definitionen
-<<: !include io/inputs/esp32-inputs.yaml
-#
-# Output Definitionen
-#<<: !include io/esp32-outputs.yaml
-<<: !include io/outputs/esp32-outputs.yaml
-#
-# LEDs
-#<<: !include io/esp32-lights.yaml
-#<<: !include aktoren/esp32-lights.yaml
-#
 ###########################################################
+
+###########################################################
+# Input Definitionen
+###########################################################
+binary_sensor:
+
+  - platform: gpio
+    id: OUT_GPIO34
+    pin: GPIO34
+
+  - platform: gpio
+    id: OUT_GPIO35
+    pin: GPIO35
+
+  - platform: gpio
+    id: OUT_GPIO36
+    pin: GPIO36
+
+  - id: OUT_GPIO39
+    platform: gpio
+    pin: GPIO39
+
+###########################################################
+# Output Definitionen
+###########################################################
+output:
+  # Pumpen 1 Anschluss
+  - id: motor_1_dir
+    platform: gpio
+    pin: GPIO26
+    inverted: true
+  - id: motor_1_speed
+    platform: ledc
+    pin: GPIO25
+    inverted: true
+
+  # Pumpen 2 Anschluss
+  - id: motor_2_dir
+    platform: gpio
+    pin: GPIO17
+    inverted: true
+  - id: motor_2_speed
+    platform: ledc
+    pin: GPIO16
+    inverted: true
+
+  # Pumpen 3 Anschluss
+  - id: motor_3_dir
+    platform: gpio
+    pin: GPIO27
+    inverted: true
+  - id: motor_3_speed
+    platform: ledc
+    pin: GPIO14
+    inverted: true
 
 ###########################################################
 # Individuelle Hardware
-#
-# Sensoren
+###########################################################
+text_sensor:
+  #
+  # Sensoren
+  # Definition der Sensoren
+  
+  # Example configuration entry
+  #dallas:
+  #  - id: dallasWaterSensor
+  #    pin: GPIO12
+  #sensor:
+  #  - platform: dallas
+  #    id: waterSensor
+  #    index: 0
+  #    name: "Wassertemperatur"
+  - platform: template
+    id: pump1_status
+    name: Pump 1 Status
+    lambda: |-
+      return {"aus"};
 
-<<: !include aktoren/esp32-sensors.yaml
+  - platform: template
+    id: pump2_status
+    name: Pump 2 Status
+    lambda: |-
+      return {"aus"};
+
+  - platform: template
+    id: pump3_status
+    name: Pump 3 Status
+    lambda: |-
+      return {"aus"};
+
+sensor:
+  - platform: template
+    id: pump1_speed
+    name: Pump 1 Speed
+    lambda: |-
+      return id(pump_1).speed;
+
+  - platform: template
+    id: pump2_speed
+    name: Pump 2 Speed
+    lambda: |-
+      return id(pump_2).speed;
+
+  - platform: template
+    id: pump3_speed
+    name: Pump 3 Speed
+    lambda: |-
+      return id(pump_3).speed;
+
+###########################################################
+#
+# Automatitionen
 #
 ###########################################################
 
-# Automatitionen
-<<: !include utils/esp32-interval.yaml
+#####################################################################
+# Allgemine Timer/Intervalle
+# See: https://esphome.io/guides/automations.html#interval-component
+#####################################################################
+interval:
+  - id: pageLoop
+    interval: 3s
+    then:
+#      - display.page.show_next: displayTft
+      - display.page.show_next: displayOled
+#      - component.update: displayTft
+      - component.update: displayOled
+
+  - id: headerLoop
+    interval: 1s
+    then:
+#      - component.update: displayTft
+      - component.update: displayOled
+
+#############################################################
+# Zeit Synchronisierung und Events
+# See: https://esphome.io/components/time.html
+#############################################################
+time:
+  - id: homeassistant_time
+    platform: homeassistant
+
+    on_time_sync:
+      then:
+        - logger.log: "Systemuhr synchronisiert"
+
+  - id: sntp_time
+    platform: sntp
+
+    on_time:
+      # Every 9 seconds
+      # - cron: '* * * * * *'
+      #   then:
+      #     - button.press: small_ammount_pump_1
+
+      # # every 5 seconds
+      # - cron: '* * * * * *'
+      #   then:
+      #     - button.press: small_ammount_pump_2
+
+      # # Every 4 seconds
+      # - cron: '* * * * * *'
+      #   then: 
+      #     - button.press: small_ammount_pump_3
+
+      # Every morning on weekdays
+      - seconds: 0
+        minutes: 30
+        hours: 7
+        days_of_week: MON-FRI
+        then:
+          - button.press: small_ammount_pump_3
+
